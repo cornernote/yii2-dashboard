@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use bedezign\yii2\audit\AuditTrailBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -11,8 +10,6 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property string $body
  * @property string $title
- *
- * @mixin AuditTrailBehavior
  */
 class Post extends ActiveRecord
 {
@@ -22,16 +19,6 @@ class Post extends ActiveRecord
     public static function tableName()
     {
         return 'post';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'audit' => ['class' => AuditTrailBehavior::className()],
-        ];
     }
 
 }

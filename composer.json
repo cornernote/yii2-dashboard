@@ -1,0 +1,33 @@
+{
+    "name": "cornernote/yii2-dashboard",
+    "description": "Dashboard manager for Yii2",
+    "keywords": ["yii2", "dashboard"],
+    "type": "yii2-extension",
+    "license": "BSD 3-Clause",
+    "authors": [
+        {
+            "name": "Brett O'Donnell",
+            "homepage": "https://mrphp.com.au/",
+            "email": "cornernote@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "2.*",
+        "yiisoft/yii2-bootstrap": "2.*",
+        "cornernote/yii2-returnurl": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "2.*",
+        "codeception/specify": "*",
+        "codeception/verify": "*",
+        "codeception/c3": "*",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {"cornernote\\dashboard\\": "src"}
+    },
+    "extra": {
+        "bootstrap": "cornernote\\dashboard\\Bootstrap"
+    }
+}

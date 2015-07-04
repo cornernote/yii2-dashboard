@@ -54,13 +54,4 @@ class User extends ActiveRecord implements IdentityInterface
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
-    /**
-     * @param string $id user_id from audit_entry table
-     * @return int|string
-     */
-    public static function userIdentifierCallback($id)
-    {
-        $user = self::findOne($id);
-        return $user ? $user->username : $id;
-    }
 }

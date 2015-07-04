@@ -3,6 +3,9 @@
 return [
     'id' => 'yii2-dashboard-console',
     'basePath' => dirname(__DIR__),
+    'bootstrap' => [
+        'dashboard',
+    ],
     'aliases' => [
         '@vendor' => VENDOR_DIR,
         '@cornernote/dashboard' => realpath(__DIR__ . '../../../../src'),

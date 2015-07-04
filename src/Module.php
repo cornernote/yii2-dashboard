@@ -1,10 +1,13 @@
 <?php
 
-namespace app\modules\dashboard;
+namespace cornernote\dashboard;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'app\modules\dashboard\controllers';
+
+    public $layout = 'main';
+
+    public $controllerNamespace = 'cornernote\dashboard\controllers';
 
     public function init()
     {

@@ -4,9 +4,13 @@ $config = [
     'id' => 'yii2-dashboard-web',
     'basePath' => dirname(__DIR__),
     'extensions' => require(VENDOR_DIR . '/yiisoft/extensions.php'),
+    'bootstrap' => [
+        'cornernote\dashboard\Bootstrap', // "type": "yii2-extension" - does not work when this project is the root
+        'dashboard',
+    ],
     'aliases' => [
         '@vendor' => VENDOR_DIR,
-        '@bower' => VENDOR_DIR . '/bower',
+        '@bower' => VENDOR_DIR . '/bower-asset',
         '@cornernote/dashboard' => realpath(__DIR__ . '../../../../src'),
     ],
     'params' => [
@@ -16,12 +20,13 @@ $config = [
         'assetManager' => [
             'basePath' => __DIR__ . '/../web/assets',
         ],
-        'cache' => null,
-        'db' => require __DIR__ . '/db.php',
-        'errorHandler' => [
-            'class' => '\cornernote\dashboard\components\web\ErrorHandler',
-            'errorAction' => 'site/error',
+        'cache' => [
+            'class' => 'yii\caching\DummyCache',
         ],
+        'db' => require __DIR__ . '/db.php',
+        //'errorHandler' => [
+        //    'errorAction' => 'site/error',
+        //],
         'log' => [
             'traceLevel' => getenv('YII_TRACE_LEVEL'),
             'targets' => [
