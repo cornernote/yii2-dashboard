@@ -7,8 +7,8 @@ use yii\widgets\DetailView;
  * @var cornernote\dashboard\models\DashboardPanel $model
  */
 
-$this->title = Yii::t('app', 'Dashboard Panel') . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Dashboard Panels'), 'url' => ['index']];
+$this->title = Yii::t('dashboard', 'Dashboard Panel') . ' ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard', 'Dashboard Panels'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="dashboard-panel-view">

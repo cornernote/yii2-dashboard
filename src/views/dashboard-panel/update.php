@@ -5,10 +5,10 @@
  * @var cornernote\dashboard\models\DashboardPanel $model
  */
 
-$this->title = Yii::t('app', 'Update') . ' ' . Yii::t('app', 'Dashboard Panel') . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Dashboard Panels'), 'url' => ['index']];
+$this->title = Yii::t('dashboard', 'Update') . ' ' . Yii::t('dashboard', 'Dashboard Panel') . ' ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard', 'Dashboard Panels'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('dashboard', 'Update');
 ?>
 <div class="dashboard-panel-update">
 

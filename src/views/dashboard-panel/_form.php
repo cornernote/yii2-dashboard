@@ -38,11 +38,11 @@ use cornernote\returnurl\ReturnUrl;
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
 
-    <?= Html::submitButton('<span class="fa fa-check"></span> ' . ($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')), [
+    <?= Html::submitButton('<span class="fa fa-check"></span> ' . ($model->isNewRecord ? Yii::t('dashboard', 'Create') : Yii::t('dashboard', 'Save')), [
         'id' => 'save-' . $model->formName(),
         'class' => 'btn btn-success'
     ]); ?>
-    <?php if($model->isNewRecord) echo Html::a('<span class="fa fa-times"></span> ' . Yii::t('app', 'Cancel'), ReturnUrl::getUrl(['index']), ['class' => 'btn btn-default']) ?>
+    <?php if($model->isNewRecord) echo Html::a('<span class="fa fa-times"></span> ' . Yii::t('dashboard', 'Cancel'), ReturnUrl::getUrl(['index']), ['class' => 'btn btn-default']) ?>
 
     <?php ActiveForm::end(); ?>
 

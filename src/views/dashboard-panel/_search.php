@@ -35,7 +35,7 @@ use yii\bootstrap\ActiveForm;
                 </button>
                 <h4 class="modal-title" id="dashboard-panel-searchModalLabel">
                     <i class="fa fa-search"></i>
-                    <?= Yii::t('app', 'Search') . ' ' . Yii::t('app', 'DashboardPanels') ?>                </h4>
+                    <?= Yii::t('dashboard', 'Search') . ' ' . Yii::t('dashboard', 'DashboardPanels') ?>                </h4>
             </div>
             <div class="modal-body">
                 <?= $form->field($model, 'id') ?>
@@ -48,7 +48,7 @@ use yii\bootstrap\ActiveForm;
                 <?= $form->field($model, 'enabled') ?>
             </div>
             <div class="modal-footer">
-                <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton(Yii::t('dashboard', 'Search'), ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
     </div>

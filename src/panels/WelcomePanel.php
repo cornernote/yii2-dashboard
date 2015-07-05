@@ -22,7 +22,7 @@ class WelcomePanel extends Panel
      */
     public function renderView()
     {
-        return \Yii::$app->view->render('../panels/welcome/view', [
+        return \Yii::$app->view->render('@cornernote/dashboard/views/dashboard/panels/welcome/update', [
             'panel' => $this,
         ]);
     }
@@ -32,7 +32,7 @@ class WelcomePanel extends Panel
      */
     public function renderUpdate()
     {
-        return \Yii::$app->view->render('../panels/welcome/update', [
+        return \Yii::$app->view->render('@cornernote/dashboard/views/dashboard/panels/welcome/update', [
             'panel' => $this,
         ]);
     }

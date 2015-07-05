@@ -13,7 +13,7 @@ use cornernote\returnurl\ReturnUrl;
  * @var cornernote\dashboard\models\search\DashboardSearch $searchModel
  */
 
-$this->title = Yii::t('app', 'Dashboards');
+$this->title = Yii::t('dashboard', 'Dashboards');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="clearfix">
 
         <p class="pull-left">
-            <?= Html::a('<span class="fa fa-plus"></span> ' . Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Dashboard'), ['create', 'ru' => ReturnUrl::getToken()], ['class' => 'btn btn-success']) ?>
-            <?= Html::button('<span class="fa fa-search"></span> ' . Yii::t('app', 'Search') . ' ' . Yii::t('app', 'Dashboards'), ['class' => 'btn btn-info', 'data-toggle' => 'modal', 'data-target' => '#dashboard-searchModal']) ?>
+            <?= Html::a('<span class="fa fa-plus"></span> ' . Yii::t('dashboard', 'Create') . ' ' . Yii::t('dashboard', 'Dashboard'), ['create', 'ru' => ReturnUrl::getToken()], ['class' => 'btn btn-success']) ?>
+            <?= Html::button('<span class="fa fa-search"></span> ' . Yii::t('dashboard', 'Search') . ' ' . Yii::t('dashboard', 'Dashboards'), ['class' => 'btn btn-info', 'data-toggle' => 'modal', 'data-target' => '#dashboard-searchModal']) ?>
         </p>
 
     </div>
@@ -36,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $dataProvider,
             'pager' => [
                 'class' => yii\widgets\LinkPager::className(),
-                'firstPageLabel' => Yii::t('app', 'First'),
-                'lastPageLabel' => Yii::t('app', 'Last'),
+                'firstPageLabel' => Yii::t('dashboard', 'First'),
+                'lastPageLabel' => Yii::t('dashboard', 'Last'),
             ],
             'filterModel' => $searchModel,
             'columns' => [
