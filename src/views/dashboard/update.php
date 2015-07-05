@@ -13,8 +13,13 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 <div class="dashboard-update">
 
     <?= $this->render('_menu', compact('model')); ?>
-    <?php echo $this->render('_form', [
+
+    <?= $this->render('_form', [
         'model' => $model,
     ]); ?>
+
+    <?= $this->render('layouts/' . $model->layout . '/update', array(
+        'dashboard' => $model,
+    )); ?>
 
 </div>

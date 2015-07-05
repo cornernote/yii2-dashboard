@@ -43,7 +43,7 @@ use yii\bootstrap\ActiveForm;
                 <?= $form->field($model, 'dashboard_id') ?>
                 <?= $form->field($model, 'position') ?>
                 <?= $form->field($model, 'sort') ?>
-                <?= $form->field($model, 'panel') ?>
+                <?= $form->field($model, 'panel_class') ?>
                 <?= $form->field($model, 'options') ?>
                 <?= $form->field($model, 'enabled') ?>
             </div>

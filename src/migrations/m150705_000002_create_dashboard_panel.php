@@ -11,7 +11,7 @@ class m150705_000002_create_dashboard_panel extends \yii\db\Migration
         $this->createTable(self::TABLE, [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'panel' => Schema::TYPE_STRING . ' NOT NULL',
+            'panel_class' => Schema::TYPE_STRING . ' NOT NULL',
             'options' => Schema::TYPE_TEXT,
             'dashboard_id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'position' => Schema::TYPE_STRING . ' NOT NULL',

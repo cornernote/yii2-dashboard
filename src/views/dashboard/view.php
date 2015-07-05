@@ -27,4 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <?= $this->render('layouts/' . $model->layout . '/view', array(
+        'dashboard' => $model,
+    )); ?>
+
 </div>

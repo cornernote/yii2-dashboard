@@ -32,11 +32,11 @@ use cornernote\returnurl\ReturnUrl;
 
     <?= $form->field($model, 'sort')->textInput() ?>
 
-    <?= $form->field($model, 'panel')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'panel_class')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'options')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'enabled')->textInput() ?>
+    <?= $form->field($model, 'enabled')->checkbox() ?>
 
     <?= Html::submitButton('<span class="fa fa-check"></span> ' . ($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')), [
         'id' => 'save-' . $model->formName(),

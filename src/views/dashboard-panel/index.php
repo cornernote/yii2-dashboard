@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dashboard_id',
                 'position',
                 'sort',
-                'panel',
+                'panel_class',
                 'options:ntext',
                 'enabled',
             ],

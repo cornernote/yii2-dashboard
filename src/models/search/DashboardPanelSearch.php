@@ -29,7 +29,7 @@ class DashboardPanelSearch extends DashboardPanel
     {
         return [
             [['id', 'dashboard_id', 'enabled', 'sort'], 'integer'],
-            [['position', 'name', 'panel'], 'safe'],
+            [['position', 'name', 'panel_class'], 'safe'],
         ];
     }
 
@@ -64,7 +64,7 @@ class DashboardPanelSearch extends DashboardPanel
 
         $query->andFilterWhere(['like', 'position', $this->position])
             ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'panel', $this->panel]);
+            ->andFilterWhere(['like', 'panel_class', $this->panel_class]);
 
         return $dataProvider;
     }

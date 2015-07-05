@@ -3,6 +3,7 @@
 namespace cornernote\dashboard\models;
 
 use cornernote\dashboard\models\query\DashboardPanelQuery;
+use cornernote\dashboard\Panel;
 use \Yii;
 use \yii\db\ActiveRecord;
 
@@ -14,12 +15,18 @@ use \yii\db\ActiveRecord;
  * @property string $position
  * @property string $name
  * @property string $options
- * @property string $panel
+ * @property string $panel_class
  * @property integer $enabled
  * @property integer $sort
+ * @property Panel $panel
  */
 class DashboardPanel extends ActiveRecord
 {
+    /**
+     * @var
+     */
+    private $_panel;
+
     /**
      * @inheritdoc
      */
@@ -34,10 +41,10 @@ class DashboardPanel extends ActiveRecord
     public function rules()
     {
         return [
-            [['dashboard_id', 'position', 'name', 'panel', 'enabled', 'sort'], 'required'],
+            [['dashboard_id', 'position', 'name', 'panel_class', 'enabled', 'sort'], 'required'],
             [['dashboard_id', 'enabled', 'sort'], 'integer'],
             [['options'], 'string'],
-            [['position', 'name', 'panel'], 'string', 'max' => 255]
+            [['position', 'name', 'panel_class'], 'string', 'max' => 255]
         ];
     }
 
@@ -52,7 +59,7 @@ class DashboardPanel extends ActiveRecord
             'position' => Yii::t('dashboard', 'Position'),
             'name' => Yii::t('dashboard', 'Name'),
             'options' => Yii::t('dashboard', 'Options'),
-            'panel' => Yii::t('dashboard', 'Panel'),
+            'panel_class' => Yii::t('dashboard', 'Panel Class'),
             'enabled' => Yii::t('dashboard', 'Enabled'),
             'sort' => Yii::t('dashboard', 'Sort'),
         ];
@@ -66,6 +73,29 @@ class DashboardPanel extends ActiveRecord
     public static function find()
     {
         return new DashboardPanelQuery(get_called_class());
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDashboardPanels()
+    {
+        return $this->hasOne(Dashboard::className(), ['id' => 'dashboard_id']);
+    }
+
+    /**
+     * @return object
+     */
+    public function getPanel()
+    {
+        if (!$this->_panel) {
+            $config = json_decode($this->options, true);
+            $config['dashboardPanel'] = $this;
+            $config['class'] = $this->panel_class;
+            $config['id'] = 'dashboard-panel-' . $this->id;
+            $this->_panel = Yii::createObject($config);
+        }
+        return $this->_panel;
     }
 
 }

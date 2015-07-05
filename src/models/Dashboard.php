@@ -67,4 +67,12 @@ class Dashboard extends ActiveRecord
         return new DashboardQuery(get_called_class());
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDashboardPanels()
+    {
+        return $this->hasMany(DashboardPanel::className(), ['dashboard_id' => 'id']);
+    }
+
 }
