@@ -5,6 +5,7 @@ namespace cornernote\dashboard;
 use cornernote\dashboard\models\DashboardPanel;
 use Yii;
 use yii\base\Component;
+use yii\bootstrap\ActiveForm;
 
 /**
  * Panel
@@ -31,9 +32,10 @@ class Panel extends Component
     }
 
     /**
+     * @param ActiveForm $form
      * @return string
      */
-    public function renderUpdate()
+    public function renderUpdate($form)
     {
         return '';
     }

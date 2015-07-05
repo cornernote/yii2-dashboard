@@ -12,7 +12,8 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard', 'Update');
 ?>
 <div class="dashboard-panel-update">
 
-    <?= $this->render('_menu', compact('model')); ?>
+    <?php //= $this->render('_menu', compact('model')); ?>
+
     <?php echo $this->render('_form', [
         'model' => $model,
     ]); ?>

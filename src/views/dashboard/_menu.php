@@ -12,7 +12,6 @@ use cornernote\returnurl\ReturnUrl;
 
 <!-- menu buttons -->
 <p class='pull-left'>
-    <?= Html::a('<span class="fa fa-arrow-left"></span> ' . Yii::t('dashboard', 'Back'), ReturnUrl::getUrl(['index']), ['class' => 'btn btn-default']) ?>
     <?= Html::a('<span class="fa fa-eye"></span> ' . Yii::t('dashboard', 'View'), ['view', 'id' => $model->id, 'ru' => ReturnUrl::getRequestToken()], ['class' => 'btn btn-primary']) ?>
     <?= Html::a('<span class="fa fa-pencil"></span> ' . Yii::t('dashboard', 'Update'), ['update', 'id' => $model->id, 'ru' => ReturnUrl::getRequestToken()], ['class' => 'btn btn-info']) ?>
     <?= Html::a('<span class="fa fa-trash"></span> ' . Yii::t('dashboard', 'Delete'), ['delete', 'id' => $model->id, 'ru' => ReturnUrl::getRequestToken()], [

@@ -1,6 +1,6 @@
 <?php
 
-use yii\widgets\DetailView;
+use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
@@ -13,19 +13,10 @@ $this->params['breadcrumbs'][] = $model->name;
 ?>
 <div class="dashboard-view">
 
-    <?= $this->render('_menu', compact('model')); ?>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'layout',
-            'sort',
-            'options:ntext',
-            'enabled',
-        ],
-    ]); ?>
+    <h1>
+        <?= $model->name; ?>
+        <?= Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['update', 'id' => $model->id]) ?>
+    </h1>
 
     <?= $this->render('layouts/' . $model->layout . '/view', array(
         'dashboard' => $model,

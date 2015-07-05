@@ -2,6 +2,7 @@
 
 use cornernote\dashboard\models\Dashboard;
 use cornernote\dashboard\models\DashboardPanel;
+use yii\helpers\Html;
 use yii\web\View;
 
 /**
@@ -29,7 +30,10 @@ foreach ($positions as $position => $positionPanels) {
     echo '<div class="col-md-' . $span . '">';
     foreach ($positionPanels as $dashboardPanel) {
         /* @var $dashboardPanel DashboardPanel */
-        echo '<h3>' . $dashboardPanel->name . '</h3>';
+        echo '<h3>';
+        echo $dashboardPanel->name . ' ';
+        echo Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['dashboard-panel/update', 'id' => $dashboardPanel->id]);
+        echo '</h3>';
         echo $dashboardPanel->panel->renderView();
     }
     echo '</div>';
