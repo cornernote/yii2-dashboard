@@ -25,13 +25,13 @@ use cornernote\returnurl\ReturnUrl;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'layout_class')->textInput(['maxlength' => true]) ?>
+    <?php //= $form->field($model, 'layout_class')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sort')->textInput() ?>
+    <?php //= $form->field($model, 'sort')->textInput() ?>
 
-    <?= $form->field($model, 'options')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'enabled')->checkbox() ?>
 
-    <?= $form->field($model, 'enabled')->textInput() ?>
+    <?= $model->layout->renderUpdate($form); ?>
 
     <?= Html::submitButton('<span class="fa fa-check"></span> ' . ($model->isNewRecord ? Yii::t('dashboard', 'Create') : Yii::t('dashboard', 'Save')), [
         'id' => 'save-' . $model->formName(),
