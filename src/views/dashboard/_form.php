@@ -16,7 +16,6 @@ use cornernote\returnurl\ReturnUrl;
 
     <?php $form = ActiveForm::begin([
         'id' => 'Dashboard',
-        'layout' => 'horizontal',
         'enableClientValidation' => false,
     ]); ?>
 
@@ -26,7 +25,7 @@ use cornernote\returnurl\ReturnUrl;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'layout')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'layout_class')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'sort')->textInput() ?>
 
@@ -38,7 +37,6 @@ use cornernote\returnurl\ReturnUrl;
         'id' => 'save-' . $model->formName(),
         'class' => 'btn btn-success'
     ]); ?>
-    <?php if($model->isNewRecord) echo Html::a('<span class="fa fa-times"></span> ' . Yii::t('dashboard', 'Cancel'), ReturnUrl::getUrl(['index']), ['class' => 'btn btn-default']) ?>
 
     <?php ActiveForm::end(); ?>
 

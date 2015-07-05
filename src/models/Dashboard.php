@@ -2,6 +2,7 @@
 
 namespace cornernote\dashboard\models;
 
+use cornernote\dashboard\Layout;
 use cornernote\dashboard\models\query\DashboardQuery;
 use \Yii;
 use \yii\db\ActiveRecord;
@@ -11,16 +12,19 @@ use \yii\db\ActiveRecord;
  *
  * @property string $id
  * @property string $name
- * @property string $layout
+ * @property string $layout_class
  * @property integer $enabled
  * @property integer $sort
  * @property string $options
- * @property string $created
- * @property string $modified
- * @property string $deleted
+ * @property Layout $layout
  */
 class Dashboard extends ActiveRecord
 {
+    /**
+     * @var Layout
+     */
+    private $_layout;
+
     /**
      * @inheritdoc
      */
@@ -35,10 +39,10 @@ class Dashboard extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'layout', 'enabled', 'sort', 'options'], 'required'],
+            [['name', 'layout_class', 'enabled', 'sort', 'options'], 'required'],
             [['enabled', 'sort'], 'integer'],
             [['options'], 'string'],
-            [['name', 'layout'], 'string', 'max' => 255]
+            [['name', 'layout_class'], 'string', 'max' => 255]
         ];
     }
 
@@ -50,7 +54,7 @@ class Dashboard extends ActiveRecord
         return [
             'id' => Yii::t('dashboard', 'ID'),
             'name' => Yii::t('dashboard', 'Name'),
-            'layout' => Yii::t('dashboard', 'Layout'),
+            'layout_class' => Yii::t('dashboard', 'Layout Class'),
             'enabled' => Yii::t('dashboard', 'Enabled'),
             'sort' => Yii::t('dashboard', 'Sort'),
             'options' => Yii::t('dashboard', 'Options'),
@@ -73,6 +77,22 @@ class Dashboard extends ActiveRecord
     public function getDashboardPanels()
     {
         return $this->hasMany(DashboardPanel::className(), ['dashboard_id' => 'id']);
+    }
+
+
+    /**
+     * @return Layout
+     */
+    public function getLayout()
+    {
+        if (!$this->_layout) {
+            $config = json_decode($this->options, true);
+            $config['dashboard'] = $this;
+            $config['class'] = $this->layout_class;
+            $config['id'] = 'dashboard-' . $this->id;
+            $this->_layout = Yii::createObject($config);
+        }
+        return $this->_layout;
     }
 
 }

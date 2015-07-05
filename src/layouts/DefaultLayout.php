@@ -1,26 +1,26 @@
 <?php
 
-namespace cornernote\dashboard\panels;
+namespace cornernote\dashboard\layouts;
 
-use cornernote\dashboard\Panel;
+use cornernote\dashboard\Layout;
 use Yii;
 
 /**
- * WelcomePanel
- * @package cornernote\dashboard\panels
+ * DefaultLayout
+ * @package cornernote\dashboard\layouts
  */
-class WelcomePanel extends Panel
+class DefaultLayout extends Layout
 {
 
     /**
-     * @var string
+     * @var int
      */
-    public $message;
+    public $columns = 1;
 
     /**
      * @var string
      */
-    public $viewPath = '@cornernote/dashboard/views/dashboard/panels/welcome';
+    public $viewPath = '@cornernote/dashboard/views/dashboard/layouts/default';
 
     /**
      * @inheritdoc
@@ -28,7 +28,7 @@ class WelcomePanel extends Panel
     public function renderView()
     {
         return \Yii::$app->view->render($this->viewPath . '/view', [
-            'panel' => $this,
+            'layout' => $this,
         ]);
     }
 
@@ -38,7 +38,7 @@ class WelcomePanel extends Panel
     public function renderUpdate($form)
     {
         return \Yii::$app->view->render($this->viewPath . '/update', [
-            'panel' => $this,
+            'layout' => $this,
             'form' => $form,
         ]);
     }

@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'id',
                 'name',
-                'layout',
+                'layout_class',
                 'sort',
                 'options:ntext',
                 'enabled',

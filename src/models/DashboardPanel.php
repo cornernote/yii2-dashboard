@@ -23,7 +23,7 @@ use \yii\db\ActiveRecord;
 class DashboardPanel extends ActiveRecord
 {
     /**
-     * @var
+     * @var Panel
      */
     private $_panel;
 
@@ -84,7 +84,7 @@ class DashboardPanel extends ActiveRecord
     }
 
     /**
-     * @return object
+     * @return Panel
      */
     public function getPanel()
     {

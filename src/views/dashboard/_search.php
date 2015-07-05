@@ -40,7 +40,7 @@ use yii\bootstrap\ActiveForm;
             <div class="modal-body">
                 <?= $form->field($model, 'id') ?>
                 <?= $form->field($model, 'name') ?>
-                <?= $form->field($model, 'layout') ?>
+                <?= $form->field($model, 'layout_class') ?>
                 <?= $form->field($model, 'sort') ?>
                 <?= $form->field($model, 'options') ?>
                 <?= $form->field($model, 'enabled') ?>

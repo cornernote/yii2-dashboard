@@ -29,7 +29,7 @@ class DashboardSearch extends Dashboard
     {
         return [
             [['id', 'enabled', 'sort'], 'integer'],
-            [['name', 'layout'], 'safe'],
+            [['name', 'layout_class'], 'safe'],
         ];
     }
 
@@ -62,7 +62,7 @@ class DashboardSearch extends Dashboard
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'layout', $this->layout]);
+            ->andFilterWhere(['like', 'layout_class', $this->layout_class]);
 
         return $dataProvider;
     }
