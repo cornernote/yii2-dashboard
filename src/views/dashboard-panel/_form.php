@@ -17,11 +17,10 @@ use cornernote\returnurl\ReturnUrl;
     <?php $form = ActiveForm::begin([
         'id' => 'DashboardPanel',
         'enableClientValidation' => false,
+        'errorSummaryCssClass' => 'alert alert-danger error-summary',
     ]); ?>
 
-    <?= Html::hiddenInput('ru', ReturnUrl::getRequestToken()); ?>
-
-    <?= $form->errorSummary($model); ?>
+    <?= str_replace('<li></li>', '', $form->errorSummary([$model, $model->panel])); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

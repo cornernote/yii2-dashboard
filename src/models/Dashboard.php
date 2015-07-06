@@ -16,6 +16,7 @@ use \yii\db\ActiveRecord;
  * @property integer $enabled
  * @property integer $sort
  * @property string $options
+ * @property DashboardPanel[] $dashboardPanels
  * @property Layout $layout
  */
 class Dashboard extends ActiveRecord
@@ -39,9 +40,8 @@ class Dashboard extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'layout_class', 'enabled', 'sort', 'options'], 'required'],
-            [['enabled', 'sort'], 'integer'],
-            [['options'], 'string'],
+            [['name', 'layout_class', 'enabled'], 'required'],
+            [['enabled'], 'integer'],
             [['name', 'layout_class'], 'string', 'max' => 255]
         ];
     }
@@ -76,7 +76,8 @@ class Dashboard extends ActiveRecord
      */
     public function getDashboardPanels()
     {
-        return $this->hasMany(DashboardPanel::className(), ['dashboard_id' => 'id']);
+        return $this->hasMany(DashboardPanel::className(), ['dashboard_id' => 'id'])
+            ->orderBy(['sort' => SORT_ASC]);
     }
 
 
@@ -93,6 +94,24 @@ class Dashboard extends ActiveRecord
             $this->_layout = Yii::createObject($config);
         }
         return $this->_layout;
+    }
+
+    /**
+     * @param array $dashboardPanelSorts
+     */
+    public function sortPanels($dashboardPanelSorts)
+    {
+        foreach ($dashboardPanelSorts as $position => $dashboardPanelSort) {
+            foreach (explode(',', $dashboardPanelSort) as $k => $v) {
+                $dashboardPanelId = str_replace('dashboard-panel-', '', $v);
+                $dashboardPanel = DashboardPanel::findOne($dashboardPanelId);
+                if ($dashboardPanel) {
+                    $dashboardPanel->position = $position;
+                    $dashboardPanel->sort = $k;
+                    $dashboardPanel->save(false);
+                }
+            }
+        }
     }
 
 }

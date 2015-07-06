@@ -107,12 +107,18 @@ class DashboardController extends Controller
         $model = $this->findModel($id);
         //$model->scenario = 'update';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been updated.'));
-            return $this->redirect(['view', 'id' => $model->id, 'ru' => ReturnUrl::getRequestToken()]);
-        } elseif (!\Yii::$app->request->isPost) {
-            $model->load(Yii::$app->request->get());
+        if (Yii::$app->request->isPost) {
+            $data = Yii::$app->request->post();
+            if ($model->layout->load($data) && $model->layout->validate()) {
+                $model->options = $model->layout->getOptions();
+                if ($model->save(false)) {
+                    $model->sortPanels($data['DashboardPanelSort']);
+                    Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been updated.'));
+                    return $this->redirect(['dashboard/view', 'id' => $model->id]);
+                }
+            }
         }
+
 
         return $this->render('update', compact('model'));
     }
@@ -130,30 +136,6 @@ class DashboardController extends Controller
         Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been deleted.'));
 
         return $this->redirect(ReturnUrl::getUrl(['index']));
-    }
-
-    /**
-     * Sorts panels in a Dashboard model.
-     * @param string $id
-     */
-    public function actionSort($id)
-    {
-        $model = $this->findModel($id);
-        $data = Yii::$app->request->post('Dashboard');
-        if ($data) {
-            $position = str_replace('dashboard-position-', '', $data['position']);
-            $dashboardPanelSort = explode(',', $data['dashboardPanelSort']);
-            foreach ($dashboardPanelSort as $k => $v) {
-                $dashboardPanelId = str_replace('dashboard-panel-', '', $v);
-                $dashboardPanel = DashboardPanel::findOne($dashboardPanelId);
-                if ($dashboardPanel) {
-                    $dashboardPanel->dashboard_id = $model->id;
-                    $dashboardPanel->position = $position;
-                    $dashboardPanel->sort = $k;
-                    $dashboardPanel->save(false);
-                }
-            }
-        }
     }
 
     /**

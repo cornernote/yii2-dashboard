@@ -4,14 +4,14 @@ namespace cornernote\dashboard;
 
 use cornernote\dashboard\models\DashboardPanel;
 use Yii;
-use yii\base\Component;
+use yii\base\Model;
 use yii\bootstrap\ActiveForm;
 
 /**
  * Panel
  * @package cornernote\dashboard
  */
-class Panel extends Component
+class Panel extends Model
 {
     /**
      * @var string panel unique identifier.
@@ -24,6 +24,26 @@ class Panel extends Component
     public $dashboardPanel;
 
     /**
+     * @inheritdoc
+     */
+    public function load($data, $formName = null)
+    {
+        $this->dashboardPanel->load($data);
+        return parent::load($data, $formName);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterValidate()
+    {
+        if (!$this->dashboardPanel->validate()) {
+            $this->addError('', '');
+        }
+        parent::afterValidate();
+    }
+
+    /**
      * @return string
      */
     public function renderView()
@@ -32,12 +52,28 @@ class Panel extends Component
     }
 
     /**
+     * @return string
+     */
+    public function renderUpdate()
+    {
+        return '';
+    }
+
+    /**
      * @param ActiveForm $form
      * @return string
      */
-    public function renderUpdate($form)
+    public function renderForm($form)
     {
         return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getOptions()
+    {
+        return json_encode([]);
     }
 
 }

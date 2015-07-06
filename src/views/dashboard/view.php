@@ -18,8 +18,6 @@ $this->params['breadcrumbs'][] = $model->name;
         <?= Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['update', 'id' => $model->id]) ?>
     </h1>
 
-    <?php
-    echo $model->layout->renderView();
-    ?>
+    <?= $model->layout->renderView(); ?>
 
 </div>

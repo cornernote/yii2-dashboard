@@ -1,15 +1,19 @@
 <?php
 
 use cornernote\dashboard\panels\WelcomePanel;
-use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+use yii\helpers\VarDumper;
 use yii\web\View;
 
 /**
  * @var $panel WelcomePanel
  * @var $this View
- * @var $form ActiveForm
  */
 ?>
 
-<?= $form->field($panel->dashboardPanel, 'options')->textarea(['rows' => 6]) ?>
-
+<h3>
+    <?= $panel->dashboardPanel->name ?>
+</h3>
+<div class="well">
+    <?php VarDumper::dump(json_decode($panel->dashboardPanel->options, true)); ?>
+</div>

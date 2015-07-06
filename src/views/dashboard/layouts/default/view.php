@@ -3,6 +3,7 @@
 use cornernote\dashboard\Layout;
 use cornernote\dashboard\models\DashboardPanel;
 use kartik\sortable\Sortable;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
@@ -22,14 +23,12 @@ for ($column = 1; $column <= $columns; $column++) {
     $positions['col_' . $column] = array();
 }
 
-$dashboardPanels = $layout->dashboard->getDashboardPanels()
-    ->andWhere(['enabled' => 1])
-    ->orderBy(['sort' => SORT_ASC])
-    ->all();
+$dashboardPanels = $layout->dashboard->getDashboardPanels()->andWhere(['enabled' => 1])->all();
 
 foreach ($dashboardPanels as $dashboardPanel) {
     /* @var $dashboardPanel DashboardPanel */
-    $positions[$dashboardPanel->position][] = [
+    $position = isset($positions[$dashboardPanel->position]) ? $dashboardPanel->position : 'overflow';
+    $positions[$position][] = [
         'options' => [
             'id' => 'dashboard-panel-' . $dashboardPanel->id,
             'class' => 'dashboard-panel',
@@ -37,34 +36,14 @@ foreach ($dashboardPanels as $dashboardPanel) {
         'content' => $dashboardPanel->panel->renderView(),
     ];
 }
+unset($positions['overflow']);
 
 echo '<div class="row">';
 foreach ($positions as $position => $items) {
     echo '<div class="col-md-' . $span . '">';
-    echo Sortable::widget([
-        'id' => 'dashboard-position-' . $position,
-        'connected' => true,
-        'items' => $items,
-        'pluginEvents' => [
-            'sortupdate' => 'sort',
-        ],
-    ]);
+    foreach ($items as $item) {
+        echo Html::tag('div', $item['content'], $item['options']);
+    }
     echo '</div>';
 }
 echo '</div>';
-?>
-<script>
-    function sort(e, ui) {
-        var position = ui.endparent.attr("id");
-        var dashboardPanelSort = [];
-        $('#' + position).find('.dashboard-panel').each(function () {
-            dashboardPanelSort.push(this.id);
-        });
-        $.post('<?= Url::to(['dashboard/sort', 'id' => $layout->dashboard->id]) ?>', {
-            Dashboard: {
-                position: position,
-                dashboardPanelSort: dashboardPanelSort.toString()
-            }
-        });
-    }
-</script>

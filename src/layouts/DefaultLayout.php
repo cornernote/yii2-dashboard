@@ -25,6 +25,32 @@ class DefaultLayout extends Layout
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return [
+            [['columns'], 'required'],
+            [['columns'], 'integer'],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getColumnOpts()
+    {
+        return [
+            '1' => 1,
+            '2' => 2,
+            '3' => 3,
+            '4' => 4,
+            '6' => 6,
+            '12' => 12,
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function renderView()
     {
         return \Yii::$app->view->render($this->viewPath . '/view', [
@@ -35,11 +61,31 @@ class DefaultLayout extends Layout
     /**
      * @inheritdoc
      */
-    public function renderUpdate($form)
+    public function renderUpdate()
     {
         return \Yii::$app->view->render($this->viewPath . '/update', [
             'layout' => $this,
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function renderForm($form)
+    {
+        return \Yii::$app->view->render($this->viewPath . '/form', [
+            'layout' => $this,
             'form' => $form,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getOptions()
+    {
+        return json_encode([
+            'columns' => $this->columns,
         ]);
     }
 

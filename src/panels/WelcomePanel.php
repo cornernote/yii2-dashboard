@@ -25,6 +25,16 @@ class WelcomePanel extends Panel
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return [
+            [['message'], 'required'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function renderView()
     {
         return \Yii::$app->view->render($this->viewPath . '/view', [
@@ -35,11 +45,31 @@ class WelcomePanel extends Panel
     /**
      * @inheritdoc
      */
-    public function renderUpdate($form)
+    public function renderUpdate()
     {
         return \Yii::$app->view->render($this->viewPath . '/update', [
             'panel' => $this,
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function renderForm($form)
+    {
+        return \Yii::$app->view->render($this->viewPath . '/form', [
+            'panel' => $this,
             'form' => $form,
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getOptions()
+    {
+        return json_encode([
+            'message' => $this->message,
         ]);
     }
 

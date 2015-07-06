@@ -15,5 +15,5 @@ use yii\web\View;
     <?= Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['dashboard-panel/update', 'id' => $panel->dashboardPanel->id]) ?>
 </h3>
 <div class="well">
-    <?= $panel->message; ?>
+    <?= Yii::$app->formatter->asNtext($panel->message); ?>
 </div>

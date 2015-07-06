@@ -18,6 +18,7 @@ use \yii\db\ActiveRecord;
  * @property string $panel_class
  * @property integer $enabled
  * @property integer $sort
+ * @property Dashboard $dashboard
  * @property Panel $panel
  */
 class DashboardPanel extends ActiveRecord
@@ -41,10 +42,9 @@ class DashboardPanel extends ActiveRecord
     public function rules()
     {
         return [
-            [['dashboard_id', 'position', 'name', 'panel_class', 'enabled', 'sort'], 'required'],
-            [['dashboard_id', 'enabled', 'sort'], 'integer'],
-            [['options'], 'string'],
-            [['position', 'name', 'panel_class'], 'string', 'max' => 255]
+            [['name', 'panel_class', 'enabled'], 'required'],
+            [['enabled'], 'integer'],
+            [['name', 'panel_class'], 'string', 'max' => 255]
         ];
     }
 
@@ -78,7 +78,7 @@ class DashboardPanel extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDashboardPanels()
+    public function getDashboard()
     {
         return $this->hasOne(Dashboard::className(), ['id' => 'dashboard_id']);
     }
