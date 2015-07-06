@@ -1,4 +1,4 @@
-# Audit Documentation
+# Documentation
 
 ## Configuration
 - [Installation and Configuration](installation.md)
