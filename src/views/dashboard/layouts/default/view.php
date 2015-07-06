@@ -24,7 +24,7 @@ for ($column = 1; $column <= $columns; $column++) {
     $positions['col_' . $column] = array();
 }
 
-$dashboardPanels = $layout->dashboard->getDashboardPanels()->andWhere(['enabled' => 1])->all();
+$dashboardPanels = $layout->dashboard->getDashboardPanels()->enabled()->all();
 
 foreach ($dashboardPanels as $dashboardPanel) {
     /* @var $dashboardPanel DashboardPanel */

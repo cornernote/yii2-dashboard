@@ -7,8 +7,6 @@ use cornernote\dashboard\models\search\DashboardPanelSearch;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
-use yii\filters\AccessControl;
-use cornernote\returnurl\ReturnUrl;
 
 /**
  * DashboardPanelController implements the CRUD actions for DashboardPanel model.
@@ -34,46 +32,6 @@ class DashboardPanelController extends Controller
     //        ]
     //    ];
     //}
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Lists all DashboardPanel models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new DashboardPanelSearch;
-        $dataProvider = $searchModel->search(Yii::$app->request->get());
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
-    }
-
-    /**
-     * Displays a single DashboardPanel model.
-     * @param string $id
-     *
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        $model = $this->findModel($id);
-
-        return $this->render('view', compact('model'));
-    }
 
     /**
      * Creates a new DashboardPanel model.
@@ -129,10 +87,11 @@ class DashboardPanelController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
         Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard Panel has been deleted.'));
 
-        return $this->redirect(ReturnUrl::getUrl(['index']));
+        return $this->redirect(['dashboard/view', 'id' => $model->dashboard_id]);
     }
 
     /**

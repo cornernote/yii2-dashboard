@@ -1,10 +1,11 @@
 <?php
 
+use cornernote\dashboard\models\Dashboard;
+use kartik\sortable\Sortable;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\bootstrap\ButtonDropdown;
 use yii\grid\GridView;
-use cornernote\returnurl\ReturnUrl;
+use yii\web\View;
 
 /**
  * @var yii\web\View $this
@@ -20,46 +21,47 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="dashboard-index">
 
     <div class="clearfix">
-
         <p class="pull-left">
-            <?= Html::a('<span class="fa fa-plus"></span> ' . Yii::t('dashboard', 'Create') . ' ' . Yii::t('dashboard', 'Dashboard'), ['create', 'ru' => ReturnUrl::getToken()], ['class' => 'btn btn-success']) ?>
-            <?= Html::button('<span class="fa fa-search"></span> ' . Yii::t('dashboard', 'Search') . ' ' . Yii::t('dashboard', 'Dashboards'), ['class' => 'btn btn-info', 'data-toggle' => 'modal', 'data-target' => '#dashboard-searchModal']) ?>
+            <?= Html::a('<span class="fa fa-plus"></span> ' . Yii::t('dashboard', 'Create') . ' ' . Yii::t('dashboard', 'Dashboard'), ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-
     </div>
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <div class="table-responsive">
-        <?= GridView::widget([
-            'layout' => '{summary}{pager}{items}{pager}',
-            'dataProvider' => $dataProvider,
-            'pager' => [
-                'class' => yii\widgets\LinkPager::className(),
-                'firstPageLabel' => Yii::t('dashboard', 'First'),
-                'lastPageLabel' => Yii::t('dashboard', 'Last'),
+    <?php
+    $items = [];
+    foreach (Dashboard::find()->orderBySort()->all() as $dashboard) {
+        $dashboardDisplay = implode(' ', [
+            Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['dashboard/view', 'id' => $dashboard->id], [
+                'data-toggle' => 'tooltip',
+                'title' => Yii::t('dashboard', 'View Dashboard'),
+            ]),
+            Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['dashboard/update', 'id' => $dashboard->id], [
+                'data-toggle' => 'tooltip',
+                'title' => Yii::t('dashboard', 'Update Dashboard'),
+            ]),
+            Html::a('<i class="glyphicon glyphicon-trash"></i>', ['dashboard/delete', 'id' => $dashboard->id], [
+                'data-confirm' => Yii::t('dashboard', 'Are you sure to delete this dashboard?'),
+                'data-method' => 'post',
+                'data-toggle' => 'tooltip',
+                'title' => Yii::t('dashboard', 'Delete Dashboard'),
+            ]),
+            '&nbsp;&nbsp;' . Html::tag('span', $dashboard->name, ['style' => !$dashboard->enabled ? 'text-decoration:line-through' : '']),
+        ]);
+        $items[] = [
+            'options' => [
+                'id' => 'dashboard-' . $dashboard->id,
+                'class' => 'dashboard',
             ],
-            'filterModel' => $searchModel,
-            'columns' => [
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'urlCreator' => function ($action, $model, $key, $index) {
-                        // using the column name as key, not mapping to 'id' like the standard generator
-                        $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string)$key];
-                        $params[0] = Yii::$app->controller->id ? Yii::$app->controller->id . '/' . $action : $action;
-                        $params['ru'] = ReturnUrl::getToken();
-                        return Url::toRoute($params);
-                    },
-                    'contentOptions' => ['nowrap' => 'nowrap']
-                ],
-                'id',
-                'name',
-                'layout_class',
-                'sort',
-                'options:ntext',
-                'enabled',
-            ],
-        ]); ?>
-    </div>
+            'content' => $dashboardDisplay,
+        ];
+    }
+    echo Sortable::widget([
+        'id' => 'dashboard-sortable',
+        'items' => $items,
+        'pluginEvents' => [
+            'sortupdate' => 'dashboardSort',
+        ],
+    ]);
+    $this->registerJs('var dashboardSortUrl = "' . Url::to(['dashboard/sort']) . '"', View::POS_END);
+    ?>
 
 </div>

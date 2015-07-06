@@ -3,13 +3,10 @@
 namespace cornernote\dashboard\controllers;
 
 use cornernote\dashboard\models\Dashboard;
-use cornernote\dashboard\models\DashboardPanel;
 use cornernote\dashboard\models\search\DashboardSearch;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
-use yii\filters\AccessControl;
-use cornernote\returnurl\ReturnUrl;
 
 /**
  * DashboardController implements the CRUD actions for Dashboard model.
@@ -88,7 +85,7 @@ class DashboardController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been created.'));
-            return $this->redirect(['view', 'id' => $model->id, 'ru' => ReturnUrl::getRequestToken()]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } elseif (!\Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->get());
         }
@@ -135,7 +132,25 @@ class DashboardController extends Controller
         $this->findModel($id)->delete();
         Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been deleted.'));
 
-        return $this->redirect(ReturnUrl::getUrl(['index']));
+        return $this->redirect(['index']);
+    }
+
+    /**
+     *
+     */
+    public function actionSort()
+    {
+        $sort = Yii::$app->request->post('sort');
+        if (!empty($sort)) {
+            foreach ($sort as $k => $dashboardId) {
+                $dashboardId = str_replace('dashboard-', '', $dashboardId);
+                $dashboard = Dashboard::findOne($dashboardId);
+                if ($dashboard) {
+                    $dashboard->sort = $k;
+                    $dashboard->save(false);
+                }
+            }
+        }
     }
 
     /**

@@ -15,7 +15,6 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "2.*",
         "yiisoft/yii2-bootstrap": "2.*",
-        "cornernote/yii2-returnurl": "1.*",
         "kartik-v/yii2-sortable": "1.2.*"
     },
     "require-dev": {

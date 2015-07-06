@@ -72,7 +72,7 @@ class Dashboard extends ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return DashboardQuery
      */
     public function getDashboardPanels()
     {

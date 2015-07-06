@@ -2,6 +2,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use cornernote\dashboard\models\Dashboard;
 use cornernote\dashboard\web\DashboardAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -27,16 +28,20 @@ DashboardAsset::register($this);
 
 <?php
 NavBar::begin([
-    'brandLabel' => Yii::t('dashboard', 'Dashboard'),
-    'brandUrl' => ['default/index'],
+    'brandLabel' => Yii::t('dashboard', 'Dashboards'),
+    'brandUrl' => ['dashboard/index'],
     'options' => ['class' => 'navbar-default navbar-fixed-top navbar-fluid'],
     'innerContainerOptions' => ['class' => 'container-fluid'],
 ]);
+$items = [];
+foreach (Dashboard::find()->enabled()->orderBySort()->all() as $dashboard) {
+    $items[] = [
+        'label' => $dashboard->name,
+        'url' => ['dashboard/view', 'id' => $dashboard->id],
+    ];
+}
 echo Nav::widget([
-    'items' => [
-        ['label' => Yii::t('dashboard', 'Dashboards'), 'url' => ['dashboard/index']],
-        ['label' => Yii::t('dashboard', 'Panels'), 'url' => ['dashboard-panel/index']],
-    ],
+    'items' => $items,
     'options' => ['class' => 'navbar-nav'],
 ]);
 echo Nav::widget([

@@ -6,16 +6,25 @@ namespace cornernote\dashboard;
  * Class Module
  * @package cornernote\dashboard
  */
+/**
+ * Class Module
+ * @package cornernote\dashboard
+ */
 class Module extends \yii\base\Module
 {
 
     /**
-     * @var string
+     * @inheritdoc
      */
     public $layout = 'main';
 
     /**
-     * @var string
+     * @inheritdoc
+     */
+    public $defaultRoute = 'dashboard';
+
+    /**
+     * @inheritdoc
      */
     public $controllerNamespace = 'cornernote\dashboard\controllers';
 
@@ -34,7 +43,7 @@ class Module extends \yii\base\Module
     ];
 
     /**
-     *
+     * @inheritdoc
      */
     public function init()
     {

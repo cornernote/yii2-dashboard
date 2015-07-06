@@ -33,6 +33,8 @@ class DashboardAsset extends AssetBundle
      * @inheritdoc
      */
     public $depends = [
+        'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }

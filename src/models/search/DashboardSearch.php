@@ -46,7 +46,7 @@ class DashboardSearch extends Dashboard
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
+            'sort' => ['defaultOrder' => ['sort' => SORT_ASC]],
         ]);
 
         $this->load($params);

@@ -2,22 +2,35 @@
 
 namespace cornernote\dashboard\models\query;
 
+use yii\db\ActiveQuery;
+use cornernote\dashboard\models\Dashboard;
+
 /**
  * This is the ActiveQuery class for [[\cornernote\dashboard\models\Dashboard]].
  *
- * @see \cornernote\dashboard\models\Dashboard
+ * @see Dashboard
  */
-class DashboardQuery extends \yii\db\ActiveQuery
+class DashboardQuery extends ActiveQuery
 {
-    /*public function active()
+    /**
+     * @return static
+     */
+    public function enabled()
     {
-        $this->andWhere('[[status]]=1');
-        return $this;
-    }*/
+        return $this->andWhere(['enabled' => 1]);
+    }
+
+    /**
+     * @return static
+     */
+    public function orderBySort()
+    {
+        return $this->orderBy(['sort' => SORT_ASC]);
+    }
 
     /**
      * @inheritdoc
-     * @return \cornernote\dashboard\models\Dashboard[]|array
+     * @return Dashboard[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +39,7 @@ class DashboardQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \cornernote\dashboard\models\Dashboard|array|null
+     * @return Dashboard|null
      */
     public function one($db = null)
     {
