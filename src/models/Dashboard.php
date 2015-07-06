@@ -40,8 +40,8 @@ class Dashboard extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'layout_class', 'enabled'], 'required'],
-            [['enabled'], 'integer'],
+            [['name', 'layout_class', 'enabled', 'sort'], 'required'],
+            [['enabled', 'sort'], 'integer'],
             [['name', 'layout_class'], 'string', 'max' => 255]
         ];
     }

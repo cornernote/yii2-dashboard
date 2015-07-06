@@ -22,7 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="clearfix">
         <p class="pull-left">
-            <?= Html::a('<span class="fa fa-plus"></span> ' . Yii::t('dashboard', 'Create') . ' ' . Yii::t('dashboard', 'Dashboard'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="fa fa-plus"></span> ' . Yii::t('dashboard', 'Create') . ' ' . Yii::t('dashboard', 'Dashboard'), [
+                'create',
+                'Dashboard' => [
+                    'enabled' => 1,
+                ],
+            ], ['class' => 'btn btn-success']) ?>
         </p>
     </div>
 

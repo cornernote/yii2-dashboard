@@ -64,14 +64,12 @@ class DashboardPanelController extends Controller
         $model = $this->findModel($id);
         //$model->scenario = 'update';
 
-        if (Yii::$app->request->isPost) {
-            $data = Yii::$app->request->post();
-            if ($model->panel->load($data) && $model->panel->validate()) {
-                $model->options = $model->panel->getOptions();
-                if ($model->save(false)) {
-                    Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard Panel has been updated.'));
-                    return $this->redirect(['dashboard/view', 'id' => $model->dashboard->id]);
-                }
+        $data = Yii::$app->request->post();
+        if ($data && $model->panel->load($data) && $model->panel->validate()) {
+            $model->options = $model->panel->getOptions();
+            if ($model->save(false)) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard Panel has been updated.'));
+                return $this->redirect(['dashboard/view', 'id' => $model->dashboard->id]);
             }
         }
 

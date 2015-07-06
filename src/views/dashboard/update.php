@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard', 'Update');
     </h1>
 
     <?php $form = ActiveForm::begin([
-        'id' => 'Dashboard',
+        'id' => 'dashboard-form',
         'enableClientValidation' => false,
         'errorSummaryCssClass' => 'alert alert-danger error-summary',
     ]); ?>

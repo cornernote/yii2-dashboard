@@ -34,18 +34,6 @@ class DashboardController extends Controller
     //}
 
     /**
-     * @inheritdoc
-     */
-    public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Lists all Dashboard models.
      * @return mixed
      */
@@ -85,7 +73,7 @@ class DashboardController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been created.'));
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         } elseif (!\Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->get());
         }
@@ -104,15 +92,13 @@ class DashboardController extends Controller
         $model = $this->findModel($id);
         //$model->scenario = 'update';
 
-        if (Yii::$app->request->isPost) {
-            $data = Yii::$app->request->post();
-            if ($model->layout->load($data) && $model->layout->validate()) {
-                $model->options = $model->layout->getOptions();
-                if ($model->save(false)) {
-                    $model->sortPanels($data['DashboardPanelSort']);
-                    Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been updated.'));
-                    return $this->redirect(['dashboard/view', 'id' => $model->id]);
-                }
+        $data = Yii::$app->request->post();
+        if ($data && $model->layout->load($data) && $model->layout->validate()) {
+            $model->options = $model->layout->getOptions();
+            if ($model->save(false)) {
+                $model->sortPanels($data['DashboardPanelSort']);
+                Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been updated.'));
+                return $this->redirect(['dashboard/view', 'id' => $model->id]);
             }
         }
 

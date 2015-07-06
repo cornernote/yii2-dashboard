@@ -4,6 +4,8 @@ namespace tests\codeception\_support;
 
 use Codeception\Module;
 use Codeception\TestCase;
+use tests\codeception\_fixtures\DashboardFixture;
+use tests\codeception\_fixtures\DashboardPanelFixture;
 use tests\codeception\_fixtures\PostFixture;
 use tests\codeception\_fixtures\UserFixture;
 use yii\test\FixtureTrait;
@@ -49,6 +51,14 @@ class FixtureHelper extends Module
             'user' => [
                 'class' => UserFixture::className(),
                 'dataFile' => '@tests/codeception/_fixtures/data/init_user.php',
+            ],
+            'dashboard' => [
+                'class' => DashboardFixture::className(),
+                'dataFile' => '@tests/codeception/_fixtures/data/init_dashboard.php',
+            ],
+            'dashboard_panel' => [
+                'class' => DashboardPanelFixture::className(),
+                'dataFile' => '@tests/codeception/_fixtures/data/init_dashboard_panel.php',
             ],
         ];
     }

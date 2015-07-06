@@ -10,7 +10,7 @@ use yii\web\View;
  */
 ?>
 
-<h3>
+<h2>
     <?= $panel->dashboardPanel->name ?>
     <?= Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['dashboard-panel/update', 'id' => $panel->dashboardPanel->id], [
         'data-toggle' => 'tooltip',
@@ -22,7 +22,7 @@ use yii\web\View;
         'data-toggle' => 'tooltip',
         'title' => Yii::t('dashboard', 'Delete Dashboard Panel'),
     ]) ?>
-</h3>
+</h2>
 <div class="well">
     <?= Yii::$app->formatter->asNtext($panel->text); ?>
 </div>

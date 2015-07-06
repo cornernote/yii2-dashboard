@@ -57,6 +57,14 @@ $config = [
     'modules' => [
         'dashboard' => [
             'class' => 'cornernote\dashboard\Module',
+            'layouts' => [
+                'default' => 'cornernote\dashboard\layouts\DefaultLayout',
+                'example' => 'app\dashboard\layouts\ExampleLayout',
+            ],
+            'panels' => [
+                'text' => 'cornernote\dashboard\panels\TextPanel',
+                'example' => 'app\dashboard\panels\ExamplePanel',
+            ],
         ],
     ],
 ];

@@ -16,8 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="dashboard-create">
 
     <?php $form = ActiveForm::begin([
-        'id' => 'Dashboard',
+        'id' => 'dashboard-form',
         'enableClientValidation' => false,
+        'errorSummaryCssClass' => 'alert alert-danger error-summary',
     ]); ?>
 
     <?= $form->errorSummary($model); ?>
