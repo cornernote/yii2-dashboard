@@ -5,6 +5,7 @@
  * @var cornernote\dashboard\models\DashboardPanel $model
  */
 
+use cornernote\dashboard\Module;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
@@ -27,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'panel_class')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'panel_class')->dropDownList(array_flip(Module::getInstance()->panels), ['prompt' => '']) ?>
 
     <?= $form->field($model, 'position')->dropDownList($model->dashboard->layout->getPositionOpts(), ['prompt' => '']) ?>
 
