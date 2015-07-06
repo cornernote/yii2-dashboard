@@ -105,17 +105,16 @@ class DefaultLayout extends Layout
     /**
      * @inheritdoc
      */
-    public function getRegionPanels()
+    public function regionPanels($dashboardPanels)
     {
-        $regions = [];
+        $regionPanels = [];
         for ($column = 1; $column <= $this->columns; $column++) {
-            $regions['column-' . $column] = [];
+            $regionPanels['column-' . $column] = [];
         }
-        $dashboardPanels = $this->dashboard->getDashboardPanels()->enabled()->all();
         foreach ($dashboardPanels as $dashboardPanel) {
             /* @var $dashboardPanel DashboardPanel */
-            $region = isset($regions[$dashboardPanel->region]) ? $dashboardPanel->region : 'overflow';
-            $regions[$region][] = [
+            $region = isset($regionPanels[$dashboardPanel->region]) ? $dashboardPanel->region : 'overflow';
+            $regionPanels[$region][] = [
                 'options' => [
                     'id' => 'dashboard-panel-' . $dashboardPanel->id,
                     'class' => 'dashboard-panel',
@@ -123,7 +122,7 @@ class DefaultLayout extends Layout
                 'content' => $dashboardPanel->panel->renderView(),
             ];
         }
-        return $regions;
+        return $regionPanels;
     }
 
 }

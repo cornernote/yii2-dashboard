@@ -3,6 +3,7 @@
 namespace cornernote\dashboard;
 
 use cornernote\dashboard\models\Dashboard;
+use cornernote\dashboard\models\DashboardPanel;
 use Yii;
 use yii\base\Component;
 use yii\base\Model;
@@ -86,9 +87,10 @@ class Layout extends Model
     }
 
     /**
+     * @param DashboardPanel[] $dashboardPanels
      * @return array
      */
-    public function getRegionPanels()
+    public function regionPanels($dashboardPanels)
     {
         return [];
     }

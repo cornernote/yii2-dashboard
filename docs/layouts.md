@@ -16,6 +16,13 @@ class ExampleLayout extends \cornernote\dashboard\Layout
 
     public $customSetting;
 
+    public function rules()
+    {
+        return [
+            [['customSetting'], 'required'],
+        ];
+    }
+
     public function getRegionOpts()
     {
         return [
@@ -24,15 +31,15 @@ class ExampleLayout extends \cornernote\dashboard\Layout
         ];
     }
 
-    public function getRegionPanels()
+    public function regionPanels($dashboardPanels)
     {
-        $regions = [];
-        for ($column = 1; $column <= $this->columns; $column++) {
-            $regions['column-' . $column] = [];
-        }
+        $regionPanels = [
+            'column-1' => [],
+            'column-2' => [],
+        ];
         $dashboardPanels = $this->dashboard->getDashboardPanels()->enabled()->all();
         foreach ($dashboardPanels as $dashboardPanel) {
-            $regions[$dashboardPanel->region][] = [
+            $regionPanels[$dashboardPanel->region][] = [
                 'options' => [
                     'id' => 'dashboard-panel-' . $dashboardPanel->id,
                     'class' => 'dashboard-panel',
@@ -40,7 +47,7 @@ class ExampleLayout extends \cornernote\dashboard\Layout
                 'content' => $dashboardPanel->panel->renderView(),
             ];
         }
-        return $regions;
+        return $regionPanels;
     }
 
     public function renderView()
@@ -78,10 +85,10 @@ class ExampleLayout extends \cornernote\dashboard\Layout
  * @var $this \yii\web\View
  */
 
-$regions = $layout->getRegionPanels();
+$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->enabled()->all());
 
 echo '<div class="row">';
-foreach ($regions as $region => $items) {
+foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-6">';
     foreach ($items as $item) {
         echo Html::tag('div', $item['content'], $item['options']);
@@ -102,14 +109,16 @@ echo '</div>';
  * @var $this \yii\web\View
  */
 
-$regions = $layout->getRegionPanels();
+$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all());
 
 echo '<div class="row">';
-foreach ($regions as $region => $items) {
+foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-6">';
+
     echo \yii\helpers\Html::hiddenInput('DashboardPanelSort[' . $region . ']', implode(',', \yii\helpers\ArrayHelper::map($items, 'options.id', 'options.id')), [
         'id' => 'input-dashboard-region-' . $region,
     ]);
+
     echo \kartik\sortable\Sortable::widget([
         'id' => 'dashboard-region-' . $region,
         'connected' => true,
@@ -118,6 +127,7 @@ foreach ($regions as $region => $items) {
             'sortupdate' => 'dashboardPanelSort',
         ],
     ]);
+
     echo '<div class="text-center">';
     echo \yii\helpers\Html::a('Create Dashboard Panel', [
         'dashboard/dashboard-panel/create',
@@ -129,6 +139,7 @@ foreach ($regions as $region => $items) {
         ]
     ], ['class' => 'btn btn-default btn-sm']);
     echo '</div>';
+
     echo '</div>';
 }
 echo '</div>';

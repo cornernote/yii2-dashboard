@@ -15,16 +15,16 @@ $columns = isset($layout->dashboard->options['columns']) ? $layout->dashboard->o
 if (!in_array($columns, array(1, 2, 3, 4, 6))) $columns = 1;
 $span = round(12 / $columns);
 
-$regions = $layout->getRegionPanels();
+$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all());
 
-if (isset($regions['overflow'])) {
-    $overflow = $regions['overflow'];
-    unset($regions['overflow']);
+if (isset($regionPanels['overflow'])) {
+    $overflow = $regionPanels['overflow'];
+    unset($regionPanels['overflow']);
 }
 
 echo '<hr>';
 echo '<div class="row">';
-foreach ($regions as $region => $items) {
+foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-' . $span . '">';
     echo Html::hiddenInput('DashboardPanelSort[' . $region . ']', implode(',', ArrayHelper::map($items, 'options.id', 'options.id')), [
         'id' => 'input-dashboard-region-' . $region,
