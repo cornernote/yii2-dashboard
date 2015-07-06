@@ -99,7 +99,7 @@ Place the following code into `app/views/dashboard/panels/example/view.php`:
     ) ?>
 </h3>
 <div class="well">
-    <?= \Yii::$app->formatter->asNtext($panel->text); ?>
+    <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
 </div>
 ```
 
