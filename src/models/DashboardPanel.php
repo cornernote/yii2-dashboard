@@ -12,7 +12,7 @@ use \Yii;
  *
  * @property string $id
  * @property string $dashboard_id
- * @property string $position
+ * @property string $region
  * @property string $name
  * @property string $options
  * @property string $panel_class
@@ -44,7 +44,7 @@ class DashboardPanel extends ActiveRecord
         return [
             [['dashboard_id', 'name', 'panel_class', 'enabled', 'sort'], 'required'],
             [['dashboard_id', 'sort', 'enabled'], 'integer'],
-            [['name', 'panel_class', 'position'], 'string', 'max' => 255]
+            [['name', 'panel_class', 'region'], 'string', 'max' => 255]
         ];
     }
 
@@ -56,7 +56,7 @@ class DashboardPanel extends ActiveRecord
         return [
             'id' => Yii::t('dashboard', 'ID'),
             'dashboard_id' => Yii::t('dashboard', 'Dashboard ID'),
-            'position' => Yii::t('dashboard', 'Position'),
+            'region' => Yii::t('dashboard', 'Region'),
             'name' => Yii::t('dashboard', 'Name'),
             'options' => Yii::t('dashboard', 'Options'),
             'panel_class' => Yii::t('dashboard', 'Panel Class'),

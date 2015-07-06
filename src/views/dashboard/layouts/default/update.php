@@ -1,15 +1,13 @@
 <?php
 
-use cornernote\dashboard\Layout;
-use cornernote\dashboard\models\DashboardPanel;
+use cornernote\dashboard\layouts\DefaultLayout;
 use kartik\sortable\Sortable;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\web\View;
 
 /**
- * @var $layout Layout
+ * @var $layout DefaultLayout
  * @var $this View
  */
 
@@ -17,38 +15,22 @@ $columns = isset($layout->dashboard->options['columns']) ? $layout->dashboard->o
 if (!in_array($columns, array(1, 2, 3, 4, 6))) $columns = 1;
 $span = round(12 / $columns);
 
-$positions = array();
-for ($column = 1; $column <= $columns; $column++) {
-    $positions['col_' . $column] = array();
-}
+$regions = $layout->getRegionPanels();
 
-$dashboardPanels = $layout->dashboard->getDashboardPanels()->all();
-
-foreach ($dashboardPanels as $dashboardPanel) {
-    /* @var $dashboardPanel DashboardPanel */
-    $position = isset($positions[$dashboardPanel->position]) ? $dashboardPanel->position : 'overflow';
-    $positions[$position][] = [
-        'options' => [
-            'id' => 'dashboard-panel-' . $dashboardPanel->id,
-            'class' => 'dashboard-panel',
-        ],
-        'content' => $dashboardPanel->panel->renderUpdate(),
-    ];
-}
-if (isset($positions['overflow'])) {
-    $overflow = $positions['overflow'];
-    unset($positions['overflow']);
+if (isset($regions['overflow'])) {
+    $overflow = $regions['overflow'];
+    unset($regions['overflow']);
 }
 
 echo '<hr>';
 echo '<div class="row">';
-foreach ($positions as $position => $items) {
+foreach ($regions as $region => $items) {
     echo '<div class="col-md-' . $span . '">';
-    echo Html::hiddenInput('DashboardPanelSort[' . $position . ']', implode(',', ArrayHelper::map($items, 'options.id', 'options.id')), [
-        'id' => 'input-dashboard-position-' . $position,
+    echo Html::hiddenInput('DashboardPanelSort[' . $region . ']', implode(',', ArrayHelper::map($items, 'options.id', 'options.id')), [
+        'id' => 'input-dashboard-region-' . $region,
     ]);
     echo Sortable::widget([
-        'id' => 'dashboard-position-' . $position,
+        'id' => 'dashboard-region-' . $region,
         'connected' => true,
         'items' => $items,
         'pluginEvents' => [
@@ -60,7 +42,7 @@ foreach ($positions as $position => $items) {
         'dashboard-panel/create',
         'DashboardPanel' => [
             'dashboard_id' => $layout->dashboard->id,
-            'position' => $position,
+            'region' => $region,
             'sort' => count($items),
             'enabled' => 1,
         ]
@@ -72,10 +54,10 @@ echo '</div>';
 if (isset($overflow)) {
     echo '<hr>';
     echo Html::hiddenInput('DashboardPanelSort[overflow]', implode(',', ArrayHelper::map($overflow, 'options.id', 'options.id')), [
-        'id' => 'input-dashboard-position-overflow',
+        'id' => 'input-dashboard-region-overflow',
     ]);
     echo Sortable::widget([
-        'id' => 'dashboard-position-overflow',
+        'id' => 'dashboard-region-overflow',
         'connected' => true,
         'items' => $overflow,
         'pluginEvents' => [

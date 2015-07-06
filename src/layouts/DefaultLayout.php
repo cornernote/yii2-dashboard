@@ -3,6 +3,7 @@
 namespace cornernote\dashboard\layouts;
 
 use cornernote\dashboard\Layout;
+use cornernote\dashboard\models\DashboardPanel;
 use Yii;
 
 /**
@@ -51,13 +52,13 @@ class DefaultLayout extends Layout
     /**
      * @return array
      */
-    public function getPositionOpts()
+    public function getRegionOpts()
     {
-        $positions = [];
+        $regions = [];
         for ($i = 1; $i <= $this->columns; $i++) {
-            $positions['col_' . $i] = Yii::t('dashboard', 'Column {i}', ['i' => $i]);
+            $regions['column-' . $i] = Yii::t('dashboard', 'Column {i}', ['i' => $i]);
         }
-        return $positions;
+        return $regions;
     }
 
     /**
@@ -65,7 +66,7 @@ class DefaultLayout extends Layout
      */
     public function renderView()
     {
-        return \Yii::$app->view->render($this->viewPath . '/view', [
+        return Yii::$app->view->render($this->viewPath . '/view', [
             'layout' => $this,
         ]);
     }
@@ -75,7 +76,7 @@ class DefaultLayout extends Layout
      */
     public function renderUpdate()
     {
-        return \Yii::$app->view->render($this->viewPath . '/update', [
+        return Yii::$app->view->render($this->viewPath . '/update', [
             'layout' => $this,
         ]);
     }
@@ -85,20 +86,44 @@ class DefaultLayout extends Layout
      */
     public function renderForm($form)
     {
-        return \Yii::$app->view->render($this->viewPath . '/form', [
+        return Yii::$app->view->render($this->viewPath . '/form', [
             'layout' => $this,
             'form' => $form,
         ]);
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function getOptions()
     {
         return [
             'columns' => $this->columns,
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getRegionPanels()
+    {
+        $regions = [];
+        for ($column = 1; $column <= $this->columns; $column++) {
+            $regions['column-' . $column] = [];
+        }
+        $dashboardPanels = $this->dashboard->getDashboardPanels()->enabled()->all();
+        foreach ($dashboardPanels as $dashboardPanel) {
+            /* @var $dashboardPanel DashboardPanel */
+            $region = isset($regions[$dashboardPanel->region]) ? $dashboardPanel->region : 'overflow';
+            $regions[$region][] = [
+                'options' => [
+                    'id' => 'dashboard-panel-' . $dashboardPanel->id,
+                    'class' => 'dashboard-panel',
+                ],
+                'content' => $dashboardPanel->panel->renderView(),
+            ];
+        }
+        return $regions;
     }
 
 }

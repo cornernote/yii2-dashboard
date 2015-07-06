@@ -80,7 +80,15 @@ class Layout extends Model
     /**
      * @return array
      */
-    public function getPositionOpts()
+    public function getRegionOpts()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getRegionPanels()
     {
         return [];
     }

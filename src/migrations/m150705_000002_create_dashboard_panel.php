@@ -14,7 +14,7 @@ class m150705_000002_create_dashboard_panel extends \yii\db\Migration
             'panel_class' => Schema::TYPE_STRING . ' NOT NULL',
             'options' => Schema::TYPE_TEXT,
             'dashboard_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'position' => Schema::TYPE_STRING . ' NOT NULL',
+            'region' => Schema::TYPE_STRING . ' NOT NULL',
             'sort' => Schema::TYPE_INTEGER . ' NOT NULL',
             'enabled' => Schema::TYPE_INTEGER . '(1) DEFAULT 0 NOT NULL',
         ], ($this->db->driverName === 'mysql' ? 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB' : null));
