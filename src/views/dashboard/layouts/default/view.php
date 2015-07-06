@@ -13,9 +13,7 @@ use yii\web\View;
  * @var $this View
  */
 
-$options = (array)json_decode($layout->dashboard->options);
-
-$columns = isset($options['columns']) ? $options['columns'] : 1;
+$columns = isset($layout->dashboard->options['columns']) ? $layout->dashboard->options['columns'] : 1;
 if (!in_array($columns, array(1, 2, 3, 4, 6))) $columns = 1;
 $span = round(12 / $columns);
 

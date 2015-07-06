@@ -74,7 +74,7 @@ class Layout extends Model
      */
     public function getOptions()
     {
-        return json_encode([]);
+        return [];
     }
 
     /**

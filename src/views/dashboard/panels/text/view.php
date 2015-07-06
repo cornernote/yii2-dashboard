@@ -1,12 +1,11 @@
 <?php
 
-use cornernote\dashboard\panels\WelcomePanel;
+use cornernote\dashboard\panels\TextPanel;
 use yii\helpers\Html;
-use yii\helpers\VarDumper;
 use yii\web\View;
 
 /**
- * @var $panel WelcomePanel
+ * @var $panel TextPanel
  * @var $this View
  */
 ?>
@@ -25,5 +24,5 @@ use yii\web\View;
     ]) ?>
 </h3>
 <div class="well">
-    <?php VarDumper::dump(json_decode($panel->dashboardPanel->options, true)); ?>
+    <?= Yii::$app->formatter->asNtext($panel->text); ?>
 </div>

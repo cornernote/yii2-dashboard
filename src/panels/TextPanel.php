@@ -6,21 +6,21 @@ use cornernote\dashboard\Panel;
 use Yii;
 
 /**
- * WelcomePanel
+ * TextPanel
  * @package cornernote\dashboard\panels
  */
-class WelcomePanel extends Panel
+class TextPanel extends Panel
 {
 
     /**
      * @var string
      */
-    public $message;
+    public $text;
 
     /**
      * @var string
      */
-    public $viewPath = '@cornernote/dashboard/views/dashboard/panels/welcome';
+    public $viewPath = '@cornernote/dashboard/views/dashboard/panels/text';
 
     /**
      * @inheritdoc
@@ -28,7 +28,7 @@ class WelcomePanel extends Panel
     public function rules()
     {
         return [
-            [['message'], 'required'],
+            [['text'], 'required'],
         ];
     }
 
@@ -68,9 +68,9 @@ class WelcomePanel extends Panel
      */
     public function getOptions()
     {
-        return json_encode([
-            'message' => $this->message,
-        ]);
+        return [
+            'text' => $this->text,
+        ];
     }
 
 }

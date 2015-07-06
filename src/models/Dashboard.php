@@ -2,10 +2,10 @@
 
 namespace cornernote\dashboard\models;
 
+use cornernote\dashboard\ActiveRecord;
 use cornernote\dashboard\Layout;
 use cornernote\dashboard\models\query\DashboardQuery;
 use \Yii;
-use \yii\db\ActiveRecord;
 
 /**
  * This is the base-model class for table "dashboard".
@@ -87,7 +87,7 @@ class Dashboard extends ActiveRecord
     public function getLayout()
     {
         if (!$this->_layout) {
-            $config = json_decode($this->options, true);
+            $config = $this->options;
             $config['dashboard'] = $this;
             $config['class'] = $this->layout_class;
             $config['id'] = 'dashboard-' . $this->id;

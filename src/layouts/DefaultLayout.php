@@ -96,9 +96,9 @@ class DefaultLayout extends Layout
      */
     public function getOptions()
     {
-        return json_encode([
+        return [
             'columns' => $this->columns,
-        ]);
+        ];
     }
 
 }

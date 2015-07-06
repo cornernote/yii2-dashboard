@@ -2,10 +2,10 @@
 
 namespace cornernote\dashboard\models;
 
+use cornernote\dashboard\ActiveRecord;
 use cornernote\dashboard\models\query\DashboardPanelQuery;
 use cornernote\dashboard\Panel;
 use \Yii;
-use \yii\db\ActiveRecord;
 
 /**
  * This is the base-model class for table "dashboard_panel".
@@ -89,7 +89,7 @@ class DashboardPanel extends ActiveRecord
     public function getPanel()
     {
         if (!$this->_panel) {
-            $config = json_decode($this->options, true);
+            $config = $this->options;
             $config['dashboardPanel'] = $this;
             $config['class'] = $this->panel_class;
             $config['id'] = 'dashboard-panel-' . $this->id;

@@ -2,12 +2,11 @@
 
 namespace cornernote\dashboard;
 
+use Yii;
+use yii\db\Connection;
+
 /**
- * Class Module
- * @package cornernote\dashboard
- */
-/**
- * Class Module
+ * Dashboard Module
  * @package cornernote\dashboard
  */
 class Module extends \yii\base\Module
@@ -29,6 +28,11 @@ class Module extends \yii\base\Module
     public $controllerNamespace = 'cornernote\dashboard\controllers';
 
     /**
+     * @var string name of the component to use for database access
+     */
+    public $db = 'db';
+
+    /**
      * @var array
      */
     public $layouts = [
@@ -39,15 +43,15 @@ class Module extends \yii\base\Module
      * @var array
      */
     public $panels = [
-        'welcome' => 'cornernote\dashboard\panels\WelcomePanel',
+        'text' => 'cornernote\dashboard\panels\TextPanel',
     ];
 
     /**
-     * @inheritdoc
+     * @return Connection the database connection.
      */
-    public function init()
+    public function getDb()
     {
-        parent::init();
-        // custom initialization code goes here
+        return Yii::$app->{$this->db};
     }
+
 }

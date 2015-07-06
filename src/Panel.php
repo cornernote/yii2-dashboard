@@ -73,7 +73,7 @@ class Panel extends Model
      */
     public function getOptions()
     {
-        return json_encode([]);
+        return [];
     }
 
 }
