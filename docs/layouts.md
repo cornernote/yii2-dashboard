@@ -4,7 +4,7 @@ A layout defines a set of Regions in which Panels can be placed.  In addition it
 options into the dashboard form when updating the dashboard.
 
 
-### Layout Class
+## Layout Class
 
 The layout class allows you to define regions where panels can be rendered.
 
@@ -91,7 +91,7 @@ class ExampleLayout extends \cornernote\dashboard\Layout
 ```
 
 
-### Layout View
+## Layout View
 
 The layout view will render the dashboard and all of it's panels in "view" mode.
 
@@ -119,7 +119,7 @@ echo '</div>';
 ```
 
 
-### `app/dashboard/views/layouts/example/update.php`
+## Layout Update
 
 The layout update will render the dashboard and all of it's panels in "update" mode.  This allows the user to
 drag-and-drop panels between the regions.
@@ -177,7 +177,7 @@ echo '</div>';
 ```
 
 
-### Layout Form
+## Layout Form
 
 The layout form will render form elements for the custom options available to your layout.
 
@@ -196,7 +196,7 @@ Place the following code into `app/dashboard/views/layouts/example/form.php`:
 ```
 
 
-### Configuration
+## Configuration
 
 Finally you will need to add your layout to the module configuration:
 
