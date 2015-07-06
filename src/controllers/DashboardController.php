@@ -3,6 +3,7 @@
 namespace cornernote\dashboard\controllers;
 
 use cornernote\dashboard\models\Dashboard;
+use cornernote\dashboard\models\DashboardPanel;
 use cornernote\dashboard\models\search\DashboardSearch;
 use yii\web\Controller;
 use Yii;
@@ -129,6 +130,30 @@ class DashboardController extends Controller
         Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been deleted.'));
 
         return $this->redirect(ReturnUrl::getUrl(['index']));
+    }
+
+    /**
+     * Sorts panels in a Dashboard model.
+     * @param string $id
+     */
+    public function actionSort($id)
+    {
+        $model = $this->findModel($id);
+        $data = Yii::$app->request->post('Dashboard');
+        if ($data) {
+            $position = str_replace('dashboard-position-', '', $data['position']);
+            $dashboardPanelSort = explode(',', $data['dashboardPanelSort']);
+            foreach ($dashboardPanelSort as $k => $v) {
+                $dashboardPanelId = str_replace('dashboard-panel-', '', $v);
+                $dashboardPanel = DashboardPanel::findOne($dashboardPanelId);
+                if ($dashboardPanel) {
+                    $dashboardPanel->dashboard_id = $model->id;
+                    $dashboardPanel->position = $position;
+                    $dashboardPanel->sort = $k;
+                    $dashboardPanel->save(false);
+                }
+            }
+        }
     }
 
     /**

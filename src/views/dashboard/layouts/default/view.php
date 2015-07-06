@@ -2,7 +2,8 @@
 
 use cornernote\dashboard\Layout;
 use cornernote\dashboard\models\DashboardPanel;
-use yii\helpers\Html;
+use kartik\sortable\Sortable;
+use yii\helpers\Url;
 use yii\web\View;
 
 /**
@@ -20,22 +21,50 @@ $positions = array();
 for ($column = 1; $column <= $columns; $column++) {
     $positions['col_' . $column] = array();
 }
-foreach ($layout->dashboard->getDashboardPanels()->andWhere(['enabled' => 1])->all() as $dashboardPanel) {
+
+$dashboardPanels = $layout->dashboard->getDashboardPanels()
+    ->andWhere(['enabled' => 1])
+    ->orderBy(['sort' => SORT_ASC])
+    ->all();
+
+foreach ($dashboardPanels as $dashboardPanel) {
     /* @var $dashboardPanel DashboardPanel */
-    $positions[$dashboardPanel->position][] = $dashboardPanel;
+    $positions[$dashboardPanel->position][] = [
+        'options' => [
+            'id' => 'dashboard-panel-' . $dashboardPanel->id,
+            'class' => 'dashboard-panel',
+        ],
+        'content' => $dashboardPanel->panel->renderView(),
+    ];
 }
 
 echo '<div class="row">';
-foreach ($positions as $position => $positionPanels) {
+foreach ($positions as $position => $items) {
     echo '<div class="col-md-' . $span . '">';
-    foreach ($positionPanels as $dashboardPanel) {
-        /* @var $dashboardPanel DashboardPanel */
-        echo '<h3>';
-        echo $dashboardPanel->name . ' ';
-        echo Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['dashboard-panel/update', 'id' => $dashboardPanel->id]);
-        echo '</h3>';
-        echo $dashboardPanel->panel->renderView();
-    }
+    echo Sortable::widget([
+        'id' => 'dashboard-position-' . $position,
+        'connected' => true,
+        'items' => $items,
+        'pluginEvents' => [
+            'sortupdate' => 'sort',
+        ],
+    ]);
     echo '</div>';
 }
 echo '</div>';
+?>
+<script>
+    function sort(e, ui) {
+        var position = ui.endparent.attr("id");
+        var dashboardPanelSort = [];
+        $('#' + position).find('.dashboard-panel').each(function () {
+            dashboardPanelSort.push(this.id);
+        });
+        $.post('<?= Url::to(['dashboard/sort', 'id' => $layout->dashboard->id]) ?>', {
+            Dashboard: {
+                position: position,
+                dashboardPanelSort: dashboardPanelSort.toString()
+            }
+        });
+    }
+</script>
