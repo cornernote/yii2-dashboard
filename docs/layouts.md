@@ -109,7 +109,7 @@ echo '<div class="row">';
 foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-6">';
     foreach ($items as $item) {
-        echo Html::tag('div', $item['content'], $item['options']);
+        echo \yii\helpers\Html::tag('div', $item['content'], $item['options']);
     }
     echo '</div>';
 }
