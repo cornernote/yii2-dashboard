@@ -1,9 +1,17 @@
 # Layouts
 
-A layout defines a set of Regions in which Panels can be placed.
+A layout defines a set of Regions in which Panels can be placed.  In addition it allows the user to enter custom
+options into the dashboard form when updating the dashboard.
 
 
-### `app/dashboard/layouts/ExampleLayout.php`
+### Layout Class
+
+The layout class allows you to define regions where panels can be rendered.
+
+It also extends `yii\base\Model`, allowing you to define custom settings which will be available for the user to
+configure the layout via a form when creating new dashboards.
+
+Place the following code into `app/dashboard/layouts/ExampleLayout.php`:
 
 ```php
 <?php
@@ -12,7 +20,7 @@ namespace app\dashboard\layouts;
 class ExampleLayout extends \cornernote\dashboard\Layout
 {
 
-    public $viewPath = '@cornernote/dashboard/views/dashboard/layouts/example';
+    public $viewPath = '@app/dashboard/views/layouts/example';
 
     public $customSetting;
 
@@ -20,6 +28,13 @@ class ExampleLayout extends \cornernote\dashboard\Layout
     {
         return [
             [['customSetting'], 'required'],
+        ];
+    }
+
+    public function getOptions()
+    {
+        return [
+            'customSetting' => $this->customSetting,
         ];
     }
 
@@ -76,7 +91,11 @@ class ExampleLayout extends \cornernote\dashboard\Layout
 ```
 
 
-### `app/dashboard/views/layouts/example/view.php`
+### Layout View
+
+The layout view will render the dashboard and all of it's panels in "view" mode.
+
+Place the following code into `app/dashboard/views/layouts/example/view.php``:
 
 ```php
 <?php
@@ -102,6 +121,11 @@ echo '</div>';
 
 ### `app/dashboard/views/layouts/example/update.php`
 
+The layout update will render the dashboard and all of it's panels in "update" mode.  This allows the user to
+drag-and-drop panels between the regions.
+
+Place the following code into `app/dashboard/views/layouts/example/view.php`:
+
 ```php
 <?php
 /**
@@ -115,10 +139,16 @@ echo '<div class="row">';
 foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-6">';
 
-    echo \yii\helpers\Html::hiddenInput('DashboardPanelSort[' . $region . ']', implode(',', \yii\helpers\ArrayHelper::map($items, 'options.id', 'options.id')), [
-        'id' => 'input-dashboard-region-' . $region,
-    ]);
+    // hidden element to store the sort order
+    echo \yii\helpers\Html::hiddenInput(
+        'DashboardPanelSort[' . $region . ']',
+        implode(',', \yii\helpers\ArrayHelper::map($items, 'options.id', 'options.id')),
+        [
+            'id' => 'input-dashboard-region-' . $region,
+        ]
+    );
 
+    // sortable widget to enable drag-and-drop
     echo \kartik\sortable\Sortable::widget([
         'id' => 'dashboard-region-' . $region,
         'connected' => true,
@@ -128,6 +158,7 @@ foreach ($regionPanels as $region => $items) {
         ],
     ]);
 
+    // create dashboard panel button
     echo '<div class="text-center">';
     echo \yii\helpers\Html::a('Create Dashboard Panel', [
         'dashboard/dashboard-panel/create',
@@ -146,7 +177,11 @@ echo '</div>';
 ```
 
 
-### `app/dashboard/views/layouts/example/form.php`
+### Layout Form
+
+The layout form will render form elements for the custom options available to your layout.
+
+Place the following code into `app/dashboard/views/layouts/example/form.php`:
 
 ```php
 <?php
@@ -158,4 +193,21 @@ echo '</div>';
 ?>
 
 <?= $form->field($layout, 'customSetting')->textInput() ?>
+```
+
+
+### Configuration
+
+Finally you will need to add your layout to the module configuration:
+
+```php
+$config = [
+    'modules' => [
+        'dashboard' => [
+            'layouts' => [
+                'example' => 'app\dashboard\layouts\Example',
+            ],
+        ],
+    ],
+];
 ```

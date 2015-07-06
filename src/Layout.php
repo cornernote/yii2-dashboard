@@ -5,7 +5,6 @@ namespace cornernote\dashboard;
 use cornernote\dashboard\models\Dashboard;
 use cornernote\dashboard\models\DashboardPanel;
 use Yii;
-use yii\base\Component;
 use yii\base\Model;
 use yii\bootstrap\ActiveForm;
 
