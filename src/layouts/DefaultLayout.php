@@ -49,6 +49,18 @@ class DefaultLayout extends Layout
     }
 
     /**
+     * @return array
+     */
+    public function getPositionOpts()
+    {
+        $positions = [];
+        for ($i = 1; $i <= $this->columns; $i++) {
+            $positions['col_' . $i] = Yii::t('dashboard', 'Column {i}', ['i' => $i]);
+        }
+        return $positions;
+    }
+
+    /**
      * @inheritdoc
      */
     public function renderView()

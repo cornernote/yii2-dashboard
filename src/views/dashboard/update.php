@@ -5,8 +5,11 @@
  * @var cornernote\dashboard\models\Dashboard $model
  */
 
+use cornernote\dashboard\widgets\AskToSaveWork;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+
+AskToSaveWork::widget();
 
 $this->title = Yii::t('dashboard', 'Update') . ' ' . Yii::t('dashboard', 'Dashboard') . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard', 'Dashboards'), 'url' => ['index']];
@@ -14,6 +17,10 @@ $this->params['breadcrumbs'][] = ['label' => $model->name ? $model->name : Yii::
 $this->params['breadcrumbs'][] = Yii::t('dashboard', 'Update');
 ?>
 <div class="dashboard-update">
+
+    <h1>
+        <?= $model->name; ?>
+    </h1>
 
     <?php $form = ActiveForm::begin([
         'id' => 'Dashboard',

@@ -5,14 +5,42 @@
  * @var cornernote\dashboard\models\DashboardPanel $model
  */
 
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+
 $this->title = Yii::t('dashboard', 'Create Dashboard Panel');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard', 'Dashboard Panels'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard', 'Dashboards'), 'url' => ['dashboard/index']];
+$this->params['breadcrumbs'][] = ['label' => $model->dashboard->name, 'url' => ['dashboard/view', 'id' => $model->dashboard_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="dashboard-panel-create">
 
-    <?= $this->render('_form', [
-        'model' => $model,
+    <?php $form = ActiveForm::begin([
+        'id' => 'DashboardPanel',
+        'enableClientValidation' => false,
+        'errorSummaryCssClass' => 'alert alert-danger error-summary',
     ]); ?>
+
+    <?= Html::hiddenInput('DashboardPanel[dashboard_id]', $model->dashboard_id); ?>
+
+    <?= $form->errorSummary($model) ?>
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'panel_class')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'position')->dropDownList($model->dashboard->layout->getPositionOpts(), ['prompt' => '']) ?>
+
+    <?= $form->field($model, 'sort')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'enabled')->checkbox() ?>
+
+    <?= Html::submitButton('<span class="fa fa-check"></span> ' . Yii::t('dashboard', 'Create'), [
+        'id' => 'save-' . $model->formName(),
+        'class' => 'btn btn-success'
+    ]); ?>
+
+    <?php ActiveForm::end(); ?>
+
 
 </div>

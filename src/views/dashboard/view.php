@@ -16,6 +16,13 @@ $this->params['breadcrumbs'][] = $model->name;
     <h1>
         <?= $model->name; ?>
         <?= Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['update', 'id' => $model->id]) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-plus small"></span>', [
+            'dashboard-panel/create',
+            'DashboardPanel' => [
+                'dashboard_id' => $model->id,
+                'enabled' => 1,
+            ],
+        ]) ?>
     </h1>
 
     <?= $model->layout->renderView(); ?>

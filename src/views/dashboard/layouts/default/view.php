@@ -3,6 +3,7 @@
 use cornernote\dashboard\Layout;
 use cornernote\dashboard\models\DashboardPanel;
 use kartik\sortable\Sortable;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
@@ -36,7 +37,10 @@ foreach ($dashboardPanels as $dashboardPanel) {
         'content' => $dashboardPanel->panel->renderView(),
     ];
 }
-unset($positions['overflow']);
+if (isset($positions['overflow'])) {
+    $overflow = $positions['overflow'];
+    unset($positions['overflow']);
+}
 
 echo '<div class="row">';
 foreach ($positions as $position => $items) {
@@ -47,3 +51,10 @@ foreach ($positions as $position => $items) {
     echo '</div>';
 }
 echo '</div>';
+
+if (isset($overflow)) {
+    echo '<hr>';
+    foreach ($overflow as $item) {
+        echo Html::tag('div', $item['content'], $item['options']);
+    }
+}

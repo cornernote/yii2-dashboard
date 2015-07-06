@@ -42,9 +42,9 @@ class DashboardPanel extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'panel_class', 'enabled'], 'required'],
-            [['enabled'], 'integer'],
-            [['name', 'panel_class'], 'string', 'max' => 255]
+            [['dashboard_id', 'name', 'panel_class', 'enabled', 'sort'], 'required'],
+            [['dashboard_id', 'sort', 'enabled'], 'integer'],
+            [['name', 'panel_class', 'position'], 'string', 'max' => 255]
         ];
     }
 

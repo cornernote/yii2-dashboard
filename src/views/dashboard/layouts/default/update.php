@@ -57,6 +57,17 @@ foreach ($positions as $position => $items) {
             'sortupdate' => 'dashboardPanelSort',
         ],
     ]);
+    echo '<div class="text-center">';
+    echo Html::a(Yii::t('dashboard', 'Create Dashboard Panel'), [
+        'dashboard-panel/create',
+        'DashboardPanel' => [
+            'dashboard_id' => $layout->dashboard->id,
+            'position' => $position,
+            'sort' => count($items),
+            'enabled' => 1,
+        ]
+    ], ['class' => 'btn btn-default btn-sm']);
+    echo '</div>';
     echo '</div>';
 }
 echo '</div>';
@@ -74,23 +85,3 @@ if (isset($overflow)) {
         ],
     ]);
 }
-?>
-<script>
-    function dashboardPanelSort(e, ui) {
-        var startParent = ui.startparent.attr("id");
-        var endParent = ui.endparent.attr("id");
-
-        var startDashboardPanelSort = [];
-        $("#" + startParent).find(".dashboard-panel").each(function () {
-            startDashboardPanelSort.push(this.id);
-        });
-
-        var endDashboardPanelSort = [];
-        $("#" + endParent).find(".dashboard-panel").each(function () {
-            endDashboardPanelSort.push(this.id);
-        });
-
-        $("#input-" + startParent).val(startDashboardPanelSort.toString());
-        $("#input-" + endParent).val(endDashboardPanelSort.toString());
-    }
-</script>

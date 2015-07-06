@@ -87,7 +87,7 @@ class DashboardPanelController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard Panel has been created.'));
-            return $this->redirect(['view', 'id' => $model->id, 'ru' => ReturnUrl::getRequestToken()]);
+            return $this->redirect(['update', 'id' => $model->id]);
         } elseif (!\Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->get());
         }

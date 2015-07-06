@@ -77,4 +77,12 @@ class Layout extends Model
         return json_encode([]);
     }
 
+    /**
+     * @return array
+     */
+    public function getPositionOpts()
+    {
+        return [];
+    }
+
 }
