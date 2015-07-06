@@ -47,31 +47,6 @@ class Layout extends Model
     /**
      * @return string
      */
-    public function renderView()
-    {
-        return '';
-    }
-
-    /**
-     * @return string
-     */
-    public function renderUpdate()
-    {
-        return '';
-    }
-
-    /**
-     * @param ActiveForm $form
-     * @return string
-     */
-    public function renderForm($form)
-    {
-        return '';
-    }
-
-    /**
-     * @return string
-     */
     public function getOptions()
     {
         return [];
@@ -92,6 +67,31 @@ class Layout extends Model
     public function regionPanels($dashboardPanels)
     {
         return [];
+    }
+
+    /**
+     * @return string
+     */
+    public function renderView()
+    {
+        return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function renderUpdate()
+    {
+        return '';
+    }
+
+    /**
+     * @param ActiveForm $form
+     * @return string
+     */
+    public function renderForm($form)
+    {
+        return '';
     }
 
 }

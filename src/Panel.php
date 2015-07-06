@@ -46,6 +46,14 @@ class Panel extends Model
     /**
      * @return string
      */
+    public function getOptions()
+    {
+        return [];
+    }
+
+    /**
+     * @return string
+     */
     public function renderView()
     {
         return '';
@@ -66,14 +74,6 @@ class Panel extends Model
     public function renderForm($form)
     {
         return '';
-    }
-
-    /**
-     * @return string
-     */
-    public function getOptions()
-    {
-        return [];
     }
 
 }

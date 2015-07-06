@@ -1,15 +1,14 @@
 # Layouts
 
-A layout defines a set of Regions in which Panels can be placed.  In addition it allows the user to enter custom
-options into the dashboard form when updating the dashboard.
+A layout defines a set of Regions in which Panels can be placed.  In addition it allows the user to enter custom options into the dashboard form when updating the dashboard.
 
 
 ## Layout Class
 
 The layout class allows you to define regions where panels can be rendered.
 
-It also extends `yii\base\Model`, allowing you to define custom settings which will be available for the user to
-configure the layout via a form when creating new dashboards.
+It extends `yii\base\Model`, allowing you to define custom settings which will be available for the user to
+configure the layout via a form when updating the dashboard.
 
 Place the following code into `app/dashboard/layouts/ExampleLayout.php`:
 
@@ -20,7 +19,7 @@ namespace app\dashboard\layouts;
 class ExampleLayout extends \cornernote\dashboard\Layout
 {
 
-    public $viewPath = '@app/dashboard/views/layouts/example';
+    public $viewPath = '@app/views/dashboard/layouts/example';
 
     public $customSetting;
 
@@ -95,7 +94,7 @@ class ExampleLayout extends \cornernote\dashboard\Layout
 
 The layout view will render the dashboard and all of it's panels in "view" mode.
 
-Place the following code into `app/dashboard/views/layouts/example/view.php``:
+Place the following code into `app/views/dashboard/layouts/example/view.php``:
 
 ```php
 <?php
@@ -121,10 +120,9 @@ echo '</div>';
 
 ## Layout Update
 
-The layout update will render the dashboard and all of it's panels in "update" mode.  This allows the user to
-drag-and-drop panels between the regions.
+The layout update will render the dashboard and all of it's panels in "update" mode.  This allows the user to drag-and-drop panels between the regions.
 
-Place the following code into `app/dashboard/views/layouts/example/view.php`:
+Place the following code into `app/views/dashboard/layouts/example/view.php`:
 
 ```php
 <?php
@@ -181,7 +179,7 @@ echo '</div>';
 
 The layout form will render form elements for the custom options available to your layout.
 
-Place the following code into `app/dashboard/views/layouts/example/form.php`:
+Place the following code into `app/views/dashboard/layouts/example/form.php`:
 
 ```php
 <?php
@@ -205,7 +203,7 @@ $config = [
     'modules' => [
         'dashboard' => [
             'layouts' => [
-                'example' => 'app\dashboard\layouts\Example',
+                'example' => 'app\dashboard\layouts\ExampleLayout',
             ],
         ],
     ],

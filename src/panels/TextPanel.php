@@ -35,9 +35,19 @@ class TextPanel extends Panel
     /**
      * @inheritdoc
      */
+    public function getOptions()
+    {
+        return [
+            'text' => $this->text,
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function renderView()
     {
-        return \Yii::$app->view->render($this->viewPath . '/view', [
+        return Yii::$app->view->render($this->viewPath . '/view', [
             'panel' => $this,
         ]);
     }
@@ -47,7 +57,7 @@ class TextPanel extends Panel
      */
     public function renderUpdate()
     {
-        return \Yii::$app->view->render($this->viewPath . '/update', [
+        return Yii::$app->view->render($this->viewPath . '/update', [
             'panel' => $this,
         ]);
     }
@@ -57,20 +67,10 @@ class TextPanel extends Panel
      */
     public function renderForm($form)
     {
-        return \Yii::$app->view->render($this->viewPath . '/form', [
+        return Yii::$app->view->render($this->viewPath . '/form', [
             'panel' => $this,
             'form' => $form,
         ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getOptions()
-    {
-        return [
-            'text' => $this->text,
-        ];
     }
 
 }
