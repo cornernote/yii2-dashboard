@@ -26,9 +26,8 @@ echo '<hr>';
 echo '<div class="row">';
 foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-' . $span . '">';
-    echo Html::hiddenInput('DashboardPanelSort[' . $region . ']', implode(',', ArrayHelper::map($items, 'options.id', 'options.id')), [
-        'id' => 'input-dashboard-region-' . $region,
-    ]);
+
+    // sortable widget to enable drag-and-drop
     echo Sortable::widget([
         'id' => 'dashboard-region-' . $region,
         'connected' => true,
@@ -37,6 +36,13 @@ foreach ($regionPanels as $region => $items) {
             'sortupdate' => 'dashboardPanelSort',
         ],
     ]);
+
+    // hidden element to store the sort order
+    echo Html::hiddenInput('DashboardPanelSort[' . $region . ']', implode(',', ArrayHelper::map($items, 'options.id', 'options.id')), [
+        'id' => 'input-dashboard-region-' . $region,
+    ]);
+
+    // create dashboard panel button
     echo '<div class="text-center">';
     echo Html::a(Yii::t('dashboard', 'Create Dashboard Panel'), [
         'dashboard-panel/create',
@@ -48,6 +54,7 @@ foreach ($regionPanels as $region => $items) {
         ]
     ], ['class' => 'btn btn-default btn-sm']);
     echo '</div>';
+
     echo '</div>';
 }
 echo '</div>';

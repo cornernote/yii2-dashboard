@@ -94,15 +94,6 @@ echo '<div class="row">';
 foreach ($regionPanels as $region => $items) {
     echo '<div class="col-md-6">';
 
-    // hidden element to store the sort order
-    echo \yii\helpers\Html::hiddenInput(
-        'DashboardPanelSort[' . $region . ']',
-        implode(',', \yii\helpers\ArrayHelper::map($items, 'options.id', 'options.id')),
-        [
-            'id' => 'input-dashboard-region-' . $region,
-        ]
-    );
-
     // sortable widget to enable drag-and-drop
     echo \kartik\sortable\Sortable::widget([
         'id' => 'dashboard-region-' . $region,
@@ -112,6 +103,15 @@ foreach ($regionPanels as $region => $items) {
             'sortupdate' => 'dashboardPanelSort',
         ],
     ]);
+
+    // hidden element to store the sort order
+    echo \yii\helpers\Html::hiddenInput(
+        'DashboardPanelSort[' . $region . ']',
+        implode(',', \yii\helpers\ArrayHelper::map($items, 'options.id', 'options.id')),
+        [
+            'id' => 'input-dashboard-region-' . $region,
+        ]
+    );
 
     // create dashboard panel button
     echo '<div class="text-center">';
