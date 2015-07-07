@@ -1,12 +1,11 @@
 <?php
 
-use cornernote\dashboard\panels\TextPanel;
+use cornernote\dashboard\Panel;
 use yii\helpers\Html;
-use yii\helpers\VarDumper;
 use yii\web\View;
 
 /**
- * @var $panel TextPanel
+ * @var $panel Panel
  * @var $this View
  */
 ?>
@@ -15,6 +14,7 @@ use yii\web\View;
     'data-toggle' => 'tooltip',
     'title' => Yii::t('dashboard', 'Update Dashboard Panel'),
 ]) ?>
+
 <?= Html::a('<span class="glyphicon glyphicon-trash small"></span>', ['dashboard-panel/delete', 'id' => $panel->dashboardPanel->id], [
     'data-confirm' => Yii::t('dashboard', 'Are you sure to delete this dashboard panel?'),
     //'data-method' => 'post',
