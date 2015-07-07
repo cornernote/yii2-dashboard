@@ -12,16 +12,7 @@ use yii\web\View;
 
 <h2>
     <?= $panel->dashboardPanel->name ?>
-    <?= Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['dashboard-panel/update', 'id' => $panel->dashboardPanel->id], [
-        'data-toggle' => 'tooltip',
-        'title' => Yii::t('dashboard', 'Update Dashboard Panel'),
-    ]) ?>
-    <?= Html::a('<span class="glyphicon glyphicon-trash small"></span>', ['dashboard-panel/delete', 'id' => $panel->dashboardPanel->id], [
-        'data-confirm' => Yii::t('dashboard', 'Are you sure to delete this dashboard panel?'),
-        //'data-method' => 'post',
-        'data-toggle' => 'tooltip',
-        'title' => Yii::t('dashboard', 'Delete Dashboard Panel'),
-    ]) ?>
+    <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
 </h2>
 <div class="well">
     <?= Yii::$app->formatter->asNtext($panel->text); ?>

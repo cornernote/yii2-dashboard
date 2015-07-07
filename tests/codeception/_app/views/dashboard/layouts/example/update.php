@@ -4,7 +4,7 @@
  * @var $this \yii\web\View
  */
 
-$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all());
+$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all(), 'update');
 
 echo '<div class="row">';
 foreach ($regionPanels as $region => $items) {

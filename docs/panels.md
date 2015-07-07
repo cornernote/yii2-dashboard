@@ -50,23 +50,7 @@ Place the following code into `app/views/dashboard/panels/example/view.php`:
 
 <h2>
     <?= $panel->dashboardPanel->name ?>
-    <?= \yii\helpers\Html::a(
-        '<span class="glyphicon glyphicon-pencil small"></span>',
-        ['dashboard-panel/update', 'id' => $panel->dashboardPanel->id],
-        [
-            'data-toggle' => 'tooltip',
-            'title' => 'Update Dashboard Panel',
-        ]
-    ) ?>
-    <?= \yii\helpers\Html::a(
-        '<span class="glyphicon glyphicon-trash small"></span>',
-        ['dashboard-panel/delete', 'id' => $panel->dashboardPanel->id],
-        [
-            'data-confirm' => 'Are you sure to delete this dashboard panel?',
-            'data-toggle' => 'tooltip',
-            'title' => 'Delete Dashboard Panel',
-        ]
-    ) ?>
+    <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
 </h2>
 <div class="well">
     <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
@@ -90,15 +74,7 @@ Place the following code into `app/views/dashboard/panels/example/update.php`:
 
 <h2>
     <?= $panel->dashboardPanel->name ?>
-    <?= \yii\helpers\Html::a('<span class="glyphicon glyphicon-pencil small"></span>', ['dashboard-panel/update', 'id' => $panel->dashboardPanel->id], [
-        'data-toggle' => 'tooltip',
-        'title' => Yii::t('dashboard', 'Update Dashboard Panel'),
-    ]) ?>
-    <?= \yii\helpers\Html::a('<span class="glyphicon glyphicon-trash small"></span>', ['dashboard-panel/delete', 'id' => $panel->dashboardPanel->id], [
-        'data-confirm' => Yii::t('dashboard', 'Are you sure to delete this dashboard panel?'),
-        'data-toggle' => 'tooltip',
-        'title' => Yii::t('dashboard', 'Delete Dashboard Panel'),
-    ]) ?>
+    <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
 </h2>
 <div class="well">
     <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>

@@ -74,7 +74,7 @@ class Layout extends Model
      * @param string $view
      * @return array
      */
-    public function regionPanels($dashboardPanels, $view)
+    public function regionPanels($dashboardPanels, $view = 'view')
     {
         $regionPanels = [];
         foreach (array_keys($this->getRegions()) as $region) {
