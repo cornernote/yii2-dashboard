@@ -14,7 +14,7 @@ $columns = isset($layout->dashboard->options['columns']) ? $layout->dashboard->o
 if (!in_array($columns, array(1, 2, 3, 4, 6))) $columns = 1;
 $span = round(12 / $columns);
 
-$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->enabled()->all());
+$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->enabled()->all(), 'view');
 
 if (isset($regionPanels['overflow'])) {
     $overflow = $regionPanels['overflow'];

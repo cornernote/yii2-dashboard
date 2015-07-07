@@ -22,26 +22,10 @@ class ExamplePanel extends \cornernote\dashboard\Panel
         ];
     }
 
-    public function renderView()
+    public function render($view, $params = [])
     {
-        return Yii::$app->view->render($this->viewPath . '/view', [
-            'panel' => $this,
-        ]);
-    }
-
-    public function renderUpdate()
-    {
-        return Yii::$app->view->render($this->viewPath . '/update', [
-            'panel' => $this,
-        ]);
-    }
-
-    public function renderForm($form)
-    {
-        return Yii::$app->view->render($this->viewPath . '/form', [
-            'panel' => $this,
-            'form' => $form,
-        ]);
+        $params['panel'] = $this;
+        return \Yii::$app->view->render($this->viewPath . '/' . $view, $params);
     }
 
 }

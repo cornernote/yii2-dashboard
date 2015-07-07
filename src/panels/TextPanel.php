@@ -45,32 +45,10 @@ class TextPanel extends Panel
     /**
      * @inheritdoc
      */
-    public function renderView()
+    public function render($view, $params = [])
     {
-        return Yii::$app->view->render($this->viewPath . '/view', [
-            'panel' => $this,
-        ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function renderUpdate()
-    {
-        return Yii::$app->view->render($this->viewPath . '/update', [
-            'panel' => $this,
-        ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function renderForm($form)
-    {
-        return Yii::$app->view->render($this->viewPath . '/form', [
-            'panel' => $this,
-            'form' => $form,
-        ]);
+        $params['panel'] = $this;
+        return Yii::$app->view->render($this->viewPath . '/' . $view, $params);
     }
 
 }

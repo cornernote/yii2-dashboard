@@ -38,6 +38,6 @@ $this->params['breadcrumbs'][] = $model->name ? $model->name : Yii::t('dashboard
         ]); ?>
     </h1>
 
-    <?= $model->layout->renderView(); ?>
+    <?= $model->layout->render('view'); ?>
 
 </div>

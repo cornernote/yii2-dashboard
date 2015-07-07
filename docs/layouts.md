@@ -37,7 +37,7 @@ class ExampleLayout extends \cornernote\dashboard\Layout
         ];
     }
 
-    public function getRegionOpts()
+    public function getRegions()
     {
         return [
             'column-1' => 'Column 1',
@@ -45,7 +45,7 @@ class ExampleLayout extends \cornernote\dashboard\Layout
         ];
     }
 
-    public function regionPanels($dashboardPanels)
+    public function regionPanels($dashboardPanels, $view = 'view')
     {
         $regionPanels = [
             'column-1' => [],
@@ -58,32 +58,16 @@ class ExampleLayout extends \cornernote\dashboard\Layout
                     'id' => 'dashboard-panel-' . $dashboardPanel->id,
                     'class' => 'dashboard-panel',
                 ],
-                'content' => $dashboardPanel->panel->renderView(),
+                'content' => $dashboardPanel->panel->render($view),
             ];
         }
         return $regionPanels;
     }
 
-    public function renderView()
+    public function render($view, $params = [])
     {
-        return \Yii::$app->view->render($this->viewPath . '/view', [
-            'layout' => $this,
-        ]);
-    }
-
-    public function renderUpdate()
-    {
-        return \Yii::$app->view->render($this->viewPath . '/update', [
-            'layout' => $this,
-        ]);
-    }
-
-    public function renderForm($form)
-    {
-        return \Yii::$app->view->render($this->viewPath . '/form', [
-            'layout' => $this,
-            'form' => $form,
-        ]);
+        $params['layout'] = $this;
+        return \Yii::$app->view->render($this->viewPath . '/view', $params);
     }
 
 }
@@ -131,7 +115,7 @@ Place the following code into `app/views/dashboard/layouts/example/update.php`:
  * @var $this \yii\web\View
  */
 
-$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all());
+$regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all(), 'update');
 
 echo '<div class="row">';
 foreach ($regionPanels as $region => $items) {

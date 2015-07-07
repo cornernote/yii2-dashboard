@@ -52,7 +52,7 @@ class DefaultLayout extends Layout
     /**
      * @return array
      */
-    public function getRegionOpts()
+    public function getRegions()
     {
         $regions = [];
         for ($i = 1; $i <= $this->columns; $i++) {
@@ -64,32 +64,10 @@ class DefaultLayout extends Layout
     /**
      * @inheritdoc
      */
-    public function renderView()
+    public function render($view = 'view', $params = [])
     {
-        return Yii::$app->view->render($this->viewPath . '/view', [
-            'layout' => $this,
-        ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function renderUpdate()
-    {
-        return Yii::$app->view->render($this->viewPath . '/update', [
-            'layout' => $this,
-        ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function renderForm($form)
-    {
-        return Yii::$app->view->render($this->viewPath . '/form', [
-            'layout' => $this,
-            'form' => $form,
-        ]);
+        $params['layout'] = $this;
+        return Yii::$app->view->render($this->viewPath . '/' . $view, $params);
     }
 
     /**
@@ -105,7 +83,7 @@ class DefaultLayout extends Layout
     /**
      * @inheritdoc
      */
-    public function regionPanels($dashboardPanels)
+    public function regionPanels($dashboardPanels, $view)
     {
         $regionPanels = [];
         for ($column = 1; $column <= $this->columns; $column++) {
@@ -119,7 +97,7 @@ class DefaultLayout extends Layout
                     'id' => 'dashboard-panel-' . $dashboardPanel->id,
                     'class' => 'dashboard-panel',
                 ],
-                'content' => $dashboardPanel->panel->renderView(),
+                'content' => $dashboardPanel->panel->render($view),
             ];
         }
         return $regionPanels;

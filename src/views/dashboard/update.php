@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = Yii::t('dashboard', 'Update');
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
 
-    <?= $model->layout->renderForm($form); ?>
+    <?= $model->layout->render('form', ['form' => $form]); ?>
 
-    <?= $model->layout->renderUpdate(); ?>
+    <?= $model->layout->render('update'); ?>
 
     <div class="form-group">
         <?= Html::submitButton('<span class="fa fa-check"></span> ' . Yii::t('dashboard', 'Save'), [

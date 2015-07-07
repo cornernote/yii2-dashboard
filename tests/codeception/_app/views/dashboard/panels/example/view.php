@@ -20,7 +20,6 @@
         ['dashboard-panel/delete', 'id' => $panel->dashboardPanel->id],
         [
             'data-confirm' => 'Are you sure to delete this dashboard panel?',
-            'data-method' => 'post',
             'data-toggle' => 'tooltip',
             'title' => 'Delete Dashboard Panel',
         ]

@@ -52,26 +52,11 @@ class Panel extends Model
     }
 
     /**
+     * @param string $view
+     * @param array $params
      * @return string
      */
-    public function renderView()
-    {
-        return '';
-    }
-
-    /**
-     * @return string
-     */
-    public function renderUpdate()
-    {
-        return '';
-    }
-
-    /**
-     * @param ActiveForm $form
-     * @return string
-     */
-    public function renderForm($form)
+    public function render($view, $params = [])
     {
         return '';
     }

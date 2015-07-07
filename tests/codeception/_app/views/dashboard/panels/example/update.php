@@ -13,7 +13,6 @@
     ]) ?>
     <?= \yii\helpers\Html::a('<span class="glyphicon glyphicon-trash small"></span>', ['dashboard-panel/delete', 'id' => $panel->dashboardPanel->id], [
         'data-confirm' => Yii::t('dashboard', 'Are you sure to delete this dashboard panel?'),
-        'data-method' => 'post',
         'data-toggle' => 'tooltip',
         'title' => Yii::t('dashboard', 'Delete Dashboard Panel'),
     ]) ?>
