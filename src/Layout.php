@@ -44,7 +44,7 @@ class Layout extends Model
     public function afterValidate()
     {
         if (!$this->dashboard->validate()) {
-            $this->addError('', '');
+            $this->addError(null);
         }
         parent::afterValidate();
     }

@@ -43,7 +43,7 @@ class Panel extends Model
     public function afterValidate()
     {
         if (!$this->dashboardPanel->validate()) {
-            $this->addError('', '');
+            $this->addError(null);
         }
         parent::afterValidate();
     }
