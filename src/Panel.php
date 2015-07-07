@@ -14,9 +14,14 @@ use yii\bootstrap\ActiveForm;
 class Panel extends Model
 {
     /**
-     * @var string panel unique identifier.
+     * @var string
      */
     public $id;
+
+    /**
+     * @var string
+     */
+    public $viewPath;
 
     /**
      * @var DashboardPanel
@@ -62,7 +67,8 @@ class Panel extends Model
      */
     public function render($view, $params = [])
     {
-        return '';
+        $params['panel'] = $this;
+        return \Yii::$app->view->render($this->viewPath . '/' . $view, $params);
     }
 
 }

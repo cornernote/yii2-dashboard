@@ -61,36 +61,4 @@ class DefaultLayout extends Layout
         return $regions;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function render($view = 'view', $params = [])
-    {
-        $params['layout'] = $this;
-        return Yii::$app->view->render($this->viewPath . '/' . $view, $params);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function regionPanels($dashboardPanels, $view)
-    {
-        $regionPanels = [];
-        for ($column = 1; $column <= $this->columns; $column++) {
-            $regionPanels['column-' . $column] = [];
-        }
-        foreach ($dashboardPanels as $dashboardPanel) {
-            /* @var $dashboardPanel DashboardPanel */
-            $region = isset($regionPanels[$dashboardPanel->region]) ? $dashboardPanel->region : 'overflow';
-            $regionPanels[$region][] = [
-                'options' => [
-                    'id' => 'dashboard-panel-' . $dashboardPanel->id,
-                    'class' => 'dashboard-panel',
-                ],
-                'content' => $dashboardPanel->panel->render($view),
-            ];
-        }
-        return $regionPanels;
-    }
-
 }

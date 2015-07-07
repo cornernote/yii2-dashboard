@@ -17,9 +17,9 @@ $span = round(12 / $columns);
 
 $regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->all(), 'update');
 
-if (isset($regionPanels['overflow'])) {
-    $overflow = $regionPanels['overflow'];
-    unset($regionPanels['overflow']);
+if (isset($regionPanels['none'])) {
+    $overflow = $regionPanels['none'];
+    unset($regionPanels['none']);
 }
 
 echo '<hr>';

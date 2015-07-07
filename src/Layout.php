@@ -15,9 +15,14 @@ use yii\bootstrap\ActiveForm;
 class Layout extends Model
 {
     /**
-     * @var string panel unique identifier.
+     * @var string
      */
     public $id;
+
+    /**
+     * @var string
+     */
+    public $viewPath;
 
     /**
      * @var Dashboard
@@ -50,7 +55,7 @@ class Layout extends Model
     public function getOptions()
     {
         $attributes = [];
-        foreach($this->safeAttributes() as $attribute){
+        foreach ($this->safeAttributes() as $attribute) {
             $attributes[$attribute] = $this->$attribute;
         }
         return $attributes;
@@ -71,7 +76,19 @@ class Layout extends Model
      */
     public function regionPanels($dashboardPanels, $view)
     {
-        return [];
+        $regionPanels = [];
+        foreach ($dashboardPanels as $dashboardPanel) {
+            /* @var $dashboardPanel DashboardPanel */
+            $region = isset($regionPanels[$dashboardPanel->region]) ? $dashboardPanel->region : 'none';
+            $regionPanels[$region][] = [
+                'options' => [
+                    'id' => 'dashboard-panel-' . $dashboardPanel->id,
+                    'class' => 'dashboard-panel',
+                ],
+                'content' => $dashboardPanel->panel->render($view),
+            ];
+        }
+        return $regionPanels;
     }
 
     /**
@@ -81,7 +98,8 @@ class Layout extends Model
      */
     public function render($view, $params = [])
     {
-        return '';
+        $params['layout'] = $this;
+        return \Yii::$app->view->render($this->viewPath . '/' . $view, $params);
     }
 
 }

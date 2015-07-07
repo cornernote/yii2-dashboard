@@ -32,13 +32,4 @@ class TextPanel extends Panel
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function render($view, $params = [])
-    {
-        $params['panel'] = $this;
-        return Yii::$app->view->render($this->viewPath . '/' . $view, $params);
-    }
-
 }

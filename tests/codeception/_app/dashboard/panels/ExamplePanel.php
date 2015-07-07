@@ -15,10 +15,4 @@ class ExamplePanel extends \cornernote\dashboard\Panel
         ];
     }
 
-    public function render($view, $params = [])
-    {
-        $params['panel'] = $this;
-        return \Yii::$app->view->render($this->viewPath . '/' . $view, $params);
-    }
-
 }
