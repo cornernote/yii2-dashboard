@@ -15,13 +15,6 @@ class ExamplePanel extends \cornernote\dashboard\Panel
         ];
     }
 
-    public function getOptions()
-    {
-        return [
-            'customSetting' => $this->customSetting,
-        ];
-    }
-
     public function render($view, $params = [])
     {
         $params['panel'] = $this;

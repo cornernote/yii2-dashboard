@@ -73,16 +73,6 @@ class DefaultLayout extends Layout
     /**
      * @inheritdoc
      */
-    public function getOptions()
-    {
-        return [
-            'columns' => $this->columns,
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function regionPanels($dashboardPanels, $view)
     {
         $regionPanels = [];

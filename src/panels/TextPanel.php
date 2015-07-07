@@ -35,16 +35,6 @@ class TextPanel extends Panel
     /**
      * @inheritdoc
      */
-    public function getOptions()
-    {
-        return [
-            'text' => $this->text,
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function render($view, $params = [])
     {
         $params['panel'] = $this;

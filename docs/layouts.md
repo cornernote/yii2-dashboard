@@ -30,11 +30,10 @@ class ExampleLayout extends \cornernote\dashboard\Layout
         ];
     }
 
-    public function getOptions()
+    public function render($view, $params = [])
     {
-        return [
-            'customSetting' => $this->customSetting,
-        ];
+        $params['layout'] = $this;
+        return \Yii::$app->view->render($this->viewPath . '/view', $params);
     }
 
     public function getRegions()
@@ -62,12 +61,6 @@ class ExampleLayout extends \cornernote\dashboard\Layout
             ];
         }
         return $regionPanels;
-    }
-
-    public function render($view, $params = [])
-    {
-        $params['layout'] = $this;
-        return \Yii::$app->view->render($this->viewPath . '/view', $params);
     }
 
 }

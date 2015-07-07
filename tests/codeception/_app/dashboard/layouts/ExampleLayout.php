@@ -15,13 +15,6 @@ class ExampleLayout extends \cornernote\dashboard\Layout
         ];
     }
 
-    public function getOptions()
-    {
-        return [
-            'customSetting' => $this->customSetting,
-        ];
-    }
-
     public function getRegions()
     {
         return [

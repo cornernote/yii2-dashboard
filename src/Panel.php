@@ -44,11 +44,15 @@ class Panel extends Model
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getOptions()
     {
-        return [];
+        $attributes = [];
+        foreach($this->safeAttributes() as $attribute){
+            $attributes[$attribute] = $this->$attribute;
+        }
+        return $attributes;
     }
 
     /**
