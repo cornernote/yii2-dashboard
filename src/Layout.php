@@ -77,10 +77,11 @@ class Layout extends Model
     public function regionPanels($dashboardPanels, $view)
     {
         $regionPanels = [];
+        foreach (array_keys($this->getRegions()) as $region) {
+            $regionPanels[$region] = [];
+        }
         foreach ($dashboardPanels as $dashboardPanel) {
-            /* @var $dashboardPanel DashboardPanel */
-            $region = isset($regionPanels[$dashboardPanel->region]) ? $dashboardPanel->region : 'none';
-            $regionPanels[$region][] = [
+            $regionPanels[$dashboardPanel->region][] = [
                 'options' => [
                     'id' => 'dashboard-panel-' . $dashboardPanel->id,
                     'class' => 'dashboard-panel',
