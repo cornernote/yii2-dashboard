@@ -1,6 +1,6 @@
 # Layouts
 
-A layout defines a set of Regions in which Panels can be placed.  In addition it allows the user to enter custom options into the dashboard form when updating the dashboard.
+A layout defines a set of regions in which panels can be placed.  In addition it allows the user to enter custom options into the dashboard form when updating the dashboard.
 
 
 ## Layout Class
