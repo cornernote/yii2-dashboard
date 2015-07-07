@@ -1,9 +1,9 @@
 .dashboard-view h1 a,
-.dashboard-panel h3 a {
+.dashboard-panel h2 a {
     display: none;
 }
 
 .dashboard-view h1:hover a,
-.dashboard-panel h3:hover a {
+.dashboard-panel h2:hover a {
     display: inline;
 }
