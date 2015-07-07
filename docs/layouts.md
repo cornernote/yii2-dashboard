@@ -55,6 +55,11 @@ Place the following code into `app/views/dashboard/layouts/example/view.php``:
  * @var $this \yii\web\View
  */
 
+echo '<h1>';
+echo $layout->dashboard->name;
+echo $this->render('@cornernote/dashboard/views/dashboard/layouts/_buttons', ['layout' => $layout]);
+echo '</h1>';
+
 $regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->enabled()->all());
 
 echo '<div class="row">';

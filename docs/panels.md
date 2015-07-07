@@ -46,12 +46,13 @@ Place the following code into `app/views/dashboard/panels/example/view.php`:
  * @var $panel \app\dashboard\panels\ExamplePanel
  * @var $this \yii\web\View
  */
+
+echo '<h2>';
+echo $panel->dashboardPanel->name;
+echo $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]);
+echo '</h2>';
 ?>
 
-<h2>
-    <?= $panel->dashboardPanel->name ?>
-    <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
-</h2>
 <div class="well">
     <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
 </div>
@@ -70,12 +71,13 @@ Place the following code into `app/views/dashboard/panels/example/update.php`:
  * @var $panel \app\dashboard\panels\ExamplePanel
  * @var $this \yii\web\View
  */
+
+echo '<h2>';
+echo $panel->dashboardPanel->name;
+echo $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]);
+echo '</h2>';
 ?>
 
-<h2>
-    <?= $panel->dashboardPanel->name ?>
-    <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
-</h2>
 <div class="well">
     <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
 </div>
