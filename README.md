@@ -13,7 +13,9 @@ Yii2 Dashboard is a module that allows you to create and manage dashboards using
 
 ## Features
 
-* todo
+* Create custom layouts with regions where panels can be placed.
+* Create custom panels to display your data inside a layout region.
+* Drag-and-drop interface to rearrange panels inside a layout.
 
 
 ## Documentation
