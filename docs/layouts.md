@@ -122,7 +122,7 @@ echo '</div>';
 
 The layout update will render the dashboard and all of it's panels in "update" mode.  This allows the user to drag-and-drop panels between the regions.
 
-Place the following code into `app/views/dashboard/layouts/example/view.php`:
+Place the following code into `app/views/dashboard/layouts/example/update.php`:
 
 ```php
 <?php
