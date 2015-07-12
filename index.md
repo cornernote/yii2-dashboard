@@ -42,10 +42,8 @@ For changes since the last version see the [Changelog](https://github.com/corner
     {% endfor %}
 </div>
 
-
-### More Screenshots
-
 More images are available from the [Screenshots](https://cornernote.github.io/yii2-dashboard/screenshots/) page.
+
 
 ## Contributing
 
