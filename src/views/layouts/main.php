@@ -4,6 +4,7 @@
 
 use cornernote\dashboard\models\Dashboard;
 use cornernote\dashboard\web\DashboardAsset;
+use cornernote\dashboard\widgets\Alert;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
@@ -61,6 +62,7 @@ NavBar::end();
             ]) ?>
         </div>
     <?php } ?>
+    <?= Alert::widget() ?>
     <?= $content ?>
 </div>
 
