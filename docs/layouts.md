@@ -1,3 +1,9 @@
+---
+layout: default
+title: Layouts
+permalink: /docs/layouts/
+---
+
 # Layouts
 
 A layout defines a set of regions in which panels can be placed.  In addition it allows the user to enter custom options into the dashboard form when updating the dashboard.

@@ -1,3 +1,9 @@
+---
+layout: default
+title: Installation and Configuration
+permalink: /docs/installation/
+---
+
 # Installation and Configuration
 
 ## Download

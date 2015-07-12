@@ -1,3 +1,9 @@
+---
+layout: default
+title: Panels
+permalink: /docs/panels/
+---
+
 # Panels
 
 A panel defines a block that will be rendered inside a layout region.  In addition it allows the user to enter custom options into the panel form when updating the panel.
