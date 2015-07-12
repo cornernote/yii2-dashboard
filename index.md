@@ -28,6 +28,7 @@ Getting started? Try the [Installation Guide](https://cornernote.github.io/yii2-
 
 For changes since the last version see the [Changelog](https://github.com/cornernote/yii2-dashboard/blob/master/CHANGELOG.md).
 
+
 ## Screenshots
 
 <div class="row thumbnails">
