@@ -162,6 +162,7 @@ Place the following code into `app/views/dashboard/layouts/example/form.php`:
 Finally you will need to add your layout to the module configuration:
 
 ```php
+<?php
 $config = [
     'modules' => [
         'dashboard' => [

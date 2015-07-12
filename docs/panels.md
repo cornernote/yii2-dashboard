@@ -114,6 +114,7 @@ Place the following code into `app/views/dashboard/panels/example/form.php`:
 Finally you will need to add your panel to the module configuration:
 
 ```php
+<?php
 $config = [
     'modules' => [
         'dashboard' => [

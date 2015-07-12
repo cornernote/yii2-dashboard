@@ -37,6 +37,7 @@ $ php yii migrate --migrationPath=@cornernote/dashboard/migrations
 Add `Dashboard` to your configuration array:
 
 ```php
+<?php
 $config = [
     'modules' => [
         'dashboard' => 'cornernote\dashboard\Module',
