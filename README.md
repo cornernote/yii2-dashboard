@@ -11,6 +11,7 @@
 
 Yii2 Dashboard is a module that allows you to create and manage dashboards using custom layouts and panels.
 
+
 ## Features
 
 * Create custom layouts with regions where panels can be placed.
@@ -20,9 +21,9 @@ Yii2 Dashboard is a module that allows you to create and manage dashboards using
 
 ## Documentation
 
-Getting started? Try the [Installation Guide](docs/installation.md).  You will find further information in the [Documentation](docs/README.md).
+Getting started? Try the [Installation Guide](https://cornernote.github.io/yii2-dashboard/docs/installation/).  You will find further information in the [Documentation](https://cornernote.github.io/yii2-dashboard/docs/).
 
-For changes since the last version see the [Changelog](CHANGELOG.md).
+For changes since the last version see the [Changelog](https://github.com/cornernote/yii2-dashboard/blob/master/CHANGELOG.md).
 
 
 ## Screenshots
@@ -39,6 +40,7 @@ Thanks to [everyone who has contributed](CREDITS.md).
 
 ## Project Resources
 
+* [Project Homepage](https://cornernote.github.io/yii2-dashboard)
 * [GitHub Project](https://github.com/cornernote/yii2-dashboard)
 * [Yii2 Extension](http://www.yiiframework.com/extension/yii2-dashboard)
 * [Packagist Package](https://packagist.org/packages/cornernote/yii2-dashboard)
