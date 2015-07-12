@@ -28,7 +28,13 @@ For changes since the last version see the [Changelog](https://github.com/corner
 
 ## Screenshots
 
-### todo
+### Dashboard View
+
+![Dashboard View](https://cloud.githubusercontent.com/assets/51875/8636670/21febed6-28ae-11e5-8fc7-dc57e5bbc422.png)
+
+### More Screenshots
+
+More images are available from the [Screenshots](https://bedezign.github.io/yii2-audit/screenshots/) page.
 
 
 ## Contributing
