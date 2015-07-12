@@ -1,3 +1,7 @@
+name: Yii2 Dashboard
+project: cornernote/yii2-dashboard
+description: Create and manage dashboards using custom layouts and panels.
+
 markdown: redcarpet
 highlighter: pygments
 permalink: /:title/
