@@ -1,6 +1,7 @@
 name: Yii2 Dashboard
 project: cornernote/yii2-dashboard
 description: Create and manage dashboards using custom layouts and panels.
+screenshot: https://cloud.githubusercontent.com/assets/51875/8369827/b70355ee-1bfe-11e5-9748-dd864f0500de.png
 
 markdown: redcarpet
 highlighter: pygments
