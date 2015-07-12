@@ -3,7 +3,7 @@
 ```php
 'modules' => [
     'audit' => [
-        'class' => 'bedezign\yii2\audit\Audit',
+        'class' => 'cornernote\dashboard\Module',
         // the layout that should be applied for views within this module
         'layout' => 'main',
         // Name of the component to use for database access

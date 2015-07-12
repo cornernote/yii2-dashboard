@@ -1,8 +1,18 @@
+---
+layout: default
+title: Contributors
+permalink: /credits/
+contributors: true
+---
+
 # Credits
 
-## Developers
+## Contributors
 
-* [Brett O'Donnell (cornernote)](https://github.com/cornernote)
+<div class="well" id="contributors">
+    <ul></ul>
+</div>
+
 
 ## Related Projects
 

@@ -1,16 +1,2 @@
-# ignore IDE specific files and dirs
+_site
 .idea
-.settings
-.project
-.buildpath
-
-# ignore test data files and dirs
-coverage.clover
-build/
-vendor/
-
-# ignore temporary files
-*~
-
-# ignore test files
-TestController.php

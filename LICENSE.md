@@ -1,3 +1,9 @@
+---
+layout: default
+title: The BSD License (BSD)
+permalink: /license/
+---
+
 # The BSD License (BSD)
 
 Copyright (c) 2013-2015, Mr PHP <info@mrphp.com.au>

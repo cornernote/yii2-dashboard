@@ -38,9 +38,9 @@ $config = [
 ];
 ```
 
-See [Module Configuration](module-configuration.md) for the all configuration options and advanced usage information.
+See [Module Configuration](../module-configuration/) for the all configuration options and advanced usage information.
 
 
 ## Where to now ?
 
-Check out the other [Documentation](README.md)
+Check out the other [Documentation](../)
