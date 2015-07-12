@@ -10,7 +10,7 @@ permalink: /docs/module-configuration/
 <?php
 $config = [
     'modules' => [
-        'audit' => [
+        'dashboard' => [
             'class' => 'cornernote\dashboard\Module',
             // the layout that should be applied for views within this module
             'layout' => 'main',
