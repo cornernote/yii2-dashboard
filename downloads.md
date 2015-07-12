@@ -37,5 +37,5 @@ git clone https://github.com/{{site.project}}.git
 
 ## Archives
 
-* `yii2-dashboard/1.0.0` - [zip](https://github.com/{{site.project}}/archive/1.0.0.tar.gz) | [tar.gz](https://github.com/{{site.project}}/archive/1.0.0.tar.gz)
-* `yii2-dashboard/dev-master` - [zip](https://github.com/{{site.project}}/archive/master.zip) | [tar.gz](https://github.com/{{site.project}}/archive/master.tar.gz)
+* `{{site.project}}: 1.0.0` - [zip](https://github.com/{{site.project}}/archive/1.0.0.tar.gz) | [tar.gz](https://github.com/{{site.project}}/archive/1.0.0.tar.gz)
+* `{{site.project}}: dev-master` - [zip](https://github.com/{{site.project}}/archive/master.zip) | [tar.gz](https://github.com/{{site.project}}/archive/master.tar.gz)
