@@ -1,2 +1,8 @@
-- name: Dashboard
-  url: https://cloud.githubusercontent.com/assets/51875/8369827/b70355ee-1bfe-11e5-9748-dd864f0500de.png
+- name: Dashboard List
+  url: https://cloud.githubusercontent.com/assets/51875/8636692/7f8b5e1a-28ae-11e5-8f05-77e9744adb61.png
+- name: Dashboard View
+  url: https://cloud.githubusercontent.com/assets/51875/8636670/21febed6-28ae-11e5-8fc7-dc57e5bbc422.png
+- name: Dashboard Update
+  url: https://cloud.githubusercontent.com/assets/51875/8636682/4873cbe2-28ae-11e5-9feb-0a41cd14efc1.png
+- name: Dashboard Panel Update
+  url: https://cloud.githubusercontent.com/assets/51875/8636695/a677daa8-28ae-11e5-8088-0ae318088b98.png
