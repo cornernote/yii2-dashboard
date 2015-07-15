@@ -1,5 +1,5 @@
 <?php
-namespace app\dashboard\layouts;
+namespace tests\app\dashboard\layouts;
 
 class ExampleLayout extends \cornernote\dashboard\Layout
 {

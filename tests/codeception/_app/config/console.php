@@ -2,7 +2,10 @@
 
 return [
     'id' => 'yii2-dashboard-console',
+    'name' => 'Yii2 Dashboard Demo',
     'basePath' => dirname(__DIR__),
+    'controllerNamespace' => 'tests\app\commands',
+    'extensions' => require(VENDOR_DIR . '/yiisoft/extensions.php'),
     'bootstrap' => [
         'dashboard',
     ],
@@ -36,11 +39,11 @@ return [
             'class' => 'cornernote\dashboard\Module',
             'layouts' => [
                 'default' => 'cornernote\dashboard\layouts\DefaultLayout',
-                'example' => 'app\dashboard\layouts\ExampleLayout',
+                'example' => 'tests\app\dashboard\layouts\ExampleLayout',
             ],
             'panels' => [
                 'text' => 'cornernote\dashboard\panels\TextPanel',
-                'example' => 'app\dashboard\panels\ExamplePanel',
+                'example' => 'tests\app\dashboard\panels\ExamplePanel',
             ],
         ],
     ],

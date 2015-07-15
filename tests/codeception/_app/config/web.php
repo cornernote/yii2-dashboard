@@ -2,7 +2,9 @@
 
 $config = [
     'id' => 'yii2-dashboard-web',
+    'name' => 'Yii2 Dashboard Demo',
     'basePath' => dirname(__DIR__),
+    'controllerNamespace' => 'tests\app\controllers',
     'extensions' => require(VENDOR_DIR . '/yiisoft/extensions.php'),
     'bootstrap' => [
         'cornernote\dashboard\Bootstrap', // "type": "yii2-extension" - does not work when this project is the root
@@ -51,7 +53,7 @@ $config = [
             'class' => 'yii\rbac\PhpManager',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'tests\app\models\User',
         ],
     ],
     'modules' => [
@@ -59,11 +61,11 @@ $config = [
             'class' => 'cornernote\dashboard\Module',
             'layouts' => [
                 'default' => 'cornernote\dashboard\layouts\DefaultLayout',
-                'example' => 'app\dashboard\layouts\ExampleLayout',
+                'example' => 'tests\app\dashboard\layouts\ExampleLayout',
             ],
             'panels' => [
                 'text' => 'cornernote\dashboard\panels\TextPanel',
-                'example' => 'app\dashboard\panels\ExamplePanel',
+                'example' => 'tests\app\dashboard\panels\ExamplePanel',
             ],
         ],
     ],

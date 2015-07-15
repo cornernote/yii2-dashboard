@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $panel \app\dashboard\panels\ExamplePanel
+ * @var $panel \tests\app\dashboard\panels\ExamplePanel
  * @var $this \yii\web\View
  * @var $form \yii\bootstrap\ActiveForm
  */

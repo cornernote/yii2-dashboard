@@ -1,5 +1,5 @@
 <?php
-namespace app\dashboard\panels;
+namespace tests\app\dashboard\panels;
 
 class ExamplePanel extends \cornernote\dashboard\Panel
 {
