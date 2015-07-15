@@ -23,12 +23,14 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * @return string
-     */
     public function actionIndex()
     {
         return $this->redirect(['/dashboard/dashboard/index']);
+    }
+
+    public function actionInfo()
+    {
+        return $this->render('info');
     }
 
 }
