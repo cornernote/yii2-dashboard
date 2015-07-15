@@ -104,11 +104,13 @@ class Dashboard extends ActiveRecord
         foreach ($dashboardPanelSorts as $region => $dashboardPanelSort) {
             foreach (explode(',', $dashboardPanelSort) as $k => $v) {
                 $dashboardPanelId = str_replace('dashboard-panel-', '', $v);
-                $dashboardPanel = DashboardPanel::findOne($dashboardPanelId);
-                if ($dashboardPanel) {
-                    $dashboardPanel->region = $region;
-                    $dashboardPanel->sort = $k;
-                    $dashboardPanel->save(false);
+                if ($dashboardPanelId) {
+                    $dashboardPanel = DashboardPanel::findOne($dashboardPanelId);
+                    if ($dashboardPanel) {
+                        $dashboardPanel->region = $region;
+                        $dashboardPanel->sort = $k;
+                        $dashboardPanel->save(false);
+                    }
                 }
             }
         }
