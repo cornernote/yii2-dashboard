@@ -22,7 +22,8 @@
         "codeception/specify": "*",
         "codeception/verify": "*",
         "codeception/c3": "*",
-        "scrutinizer/ocular": "~1.1"
+        "scrutinizer/ocular": "~1.1",
+        "heroku/heroku-buildpack-php": "*"
     },
     "autoload": {
         "psr-4": {"cornernote\\dashboard\\": "src"}
