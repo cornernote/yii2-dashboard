@@ -2,10 +2,11 @@
 
 $config = [
     'id' => 'yii2-dashboard-web',
-    'name' => 'Yii2 Dashboard Demo',
+    'name' => 'Yii2 Dashboard',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'tests\app\controllers',
     'extensions' => require(VENDOR_DIR . '/yiisoft/extensions.php'),
+    'homeUrl' => 'https://cornernote.github.io/yii2-dashboard/',
     'bootstrap' => [
         'cornernote\dashboard\Bootstrap', // "type": "yii2-extension" - does not work when this project is the root
         'dashboard',

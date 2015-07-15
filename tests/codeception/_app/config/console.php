@@ -2,7 +2,7 @@
 
 return [
     'id' => 'yii2-dashboard-console',
-    'name' => 'Yii2 Dashboard Demo',
+    'name' => 'Yii2 Dashboard',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'tests\app\commands',
     'extensions' => require(VENDOR_DIR . '/yiisoft/extensions.php'),
