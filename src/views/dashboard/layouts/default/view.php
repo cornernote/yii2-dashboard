@@ -40,7 +40,6 @@ if (isset($regionPanels['none'])) {
             echo '</div>';
         }
         echo '</div>';
-
         if (isset($overflow)) {
             echo '<hr>';
             foreach ($overflow as $item) {

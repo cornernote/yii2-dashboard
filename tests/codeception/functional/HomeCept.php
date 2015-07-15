@@ -20,4 +20,4 @@ $I->see('Layout Class');
 $I->click('Dashboards');
 $I->seeLink('Dashboard name 1');
 $I->click('Dashboard name 1');
-$I->see('Dashboard name 1', 'h1');
+$I->see('Dashboard name 1', 'h2');

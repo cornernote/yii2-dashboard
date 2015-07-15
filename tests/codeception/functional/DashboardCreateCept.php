@@ -28,7 +28,7 @@ $I->see('default dashboard', 'h1');
 $I->selectOption('DefaultLayout[columns]', '1');
 $I->submitForm('#dashboard-form', []);
 
-$I->see('default dashboard', 'h1');
+$I->see('default dashboard', 'h2');
 
 //$I->click('.glyphicon-trash');
 //$I->dontSee('default dashboard');

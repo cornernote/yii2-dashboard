@@ -29,5 +29,5 @@ $I->submitForm('#dashboardPanel-form', []);
 $I->fillField('TextPanel[text]', 'dummy text');
 $I->submitForm('#dashboardPanel-form', []);
 
-$I->see('text dashboard panel', 'h2');
+$I->see('text dashboard panel', 'h3');
 $I->see('dummy text');
