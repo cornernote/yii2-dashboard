@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'create',
                 'Dashboard' => [
                     'enabled' => 1,
+                    'sort' => 0,
                 ],
             ], ['class' => 'btn btn-success']) ?>
         </p>
