@@ -55,6 +55,7 @@ Thanks to [everyone who has contributed](https://cornernote.github.io/yii2-dashb
 ## Project Resources
 
 * [Project Homepage](https://cornernote.github.io/yii2-dashboard/)
+* [Live Demo](http://yii2-dashboard.herokuapp.com/)
 * [GitHub Project](https://github.com/cornernote/yii2-dashboard)
 * [Yii2 Extension](http://www.yiiframework.com/extension/yii2-dashboard)
 * [Packagist Package](https://packagist.org/packages/cornernote/yii2-dashboard)
