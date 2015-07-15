@@ -2,7 +2,6 @@
 
 return [
     [
-        'id' => 1,
         'name' => 'DashboardPanel name 1',
         'panel_class' => 'cornernote\dashboard\panels\TextPanel',
         'dashboard_id' => 1,
