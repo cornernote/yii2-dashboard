@@ -27,7 +27,7 @@ $config = [
             'class' => 'yii\rbac\PhpManager',
         ],
         'cache' => [
-            'class' => 'yii\caching\DummyCache',
+            'class' => YII_ENV == 'heroku' ? 'yii\caching\FileCache' : 'yii\caching\DummyCache',
         ],
         'db' => require __DIR__ . '/db.php',
         'errorHandler' => [

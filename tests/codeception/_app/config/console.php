@@ -17,7 +17,9 @@ return [
         'supportEmail' => 'errors@example.com',
     ],
     'components' => [
-        'cache' => null,
+        'cache' => [
+            'class' => YII_ENV == 'heroku' ? 'yii\caching\FileCache' : 'yii\caching\DummyCache',
+        ],
         'db' => require __DIR__ . '/db.php',
         'log' => [
             'traceLevel' => getenv('YII_TRACE_LEVEL'),
