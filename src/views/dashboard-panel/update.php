@@ -11,8 +11,7 @@ use yii\helpers\Html;
 $this->title = Yii::t('dashboard', 'Update') . ' ' . Yii::t('dashboard', 'Dashboard Panel') . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('dashboard', 'Dashboards'), 'url' => ['dashboard/index']];
 $this->params['breadcrumbs'][] = ['label' => $model->dashboard->name, 'url' => ['dashboard/view', 'id' => $model->dashboard_id]];
-$this->params['breadcrumbs'][] = ['label' => $model->name ? $model->name : Yii::t('dashboard', 'Dashboard Panel') . ' #' . $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('dashboard', 'Update');
+$this->params['breadcrumbs'][] = $model->name ? $model->name : Yii::t('dashboard', 'Dashboard Panel') . ' #' . $model->id;
 ?>
 <div class="dashboard-panel-update">
 
