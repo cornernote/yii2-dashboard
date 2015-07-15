@@ -23,13 +23,16 @@ $config = [
         'assetManager' => [
             'basePath' => __DIR__ . '/../web/assets',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\DummyCache',
         ],
         'db' => require __DIR__ . '/db.php',
-        //'errorHandler' => [
-        //    'errorAction' => 'site/error',
-        //],
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
         'log' => [
             'traceLevel' => getenv('YII_TRACE_LEVEL'),
             'targets' => [
@@ -50,8 +53,9 @@ $config = [
             'enableCsrfValidation' => false,
             'enableCookieValidation' => false
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\PhpManager',
+        'urlManager' => [
+            'enablePrettyUrl' => getenv('YII_ENV') == 'heroku' ? true : false,
+            'showScriptName' => getenv('YII_ENV') == 'heroku' ? false : true,
         ],
         'user' => [
             'identityClass' => 'tests\app\models\User',
