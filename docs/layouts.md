@@ -61,22 +61,32 @@ Place the following code into `app/views/dashboard/layouts/example/view.php``:
  * @var $this \yii\web\View
  */
 
-echo '<h1>';
-echo $layout->dashboard->name;
-echo $this->render('@cornernote/dashboard/views/dashboard/layouts/_buttons', ['layout' => $layout]);
-echo '</h1>';
-
 $regionPanels = $layout->regionPanels($layout->dashboard->getDashboardPanels()->enabled()->all());
+?>
 
-echo '<div class="row">';
-foreach ($regionPanels as $region => $items) {
-    echo '<div class="col-md-6">';
-    foreach ($items as $item) {
-        echo \yii\helpers\Html::tag('div', $item['content'], $item['options']);
-    }
-    echo '</div>';
-}
-echo '</div>';
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            <?= $layout->dashboard->name ?>
+            <div class="pull-right">
+                <?= $this->render('@cornernote/dashboard/views/dashboard/layouts/_buttons', ['layout' => $layout]) ?>
+            </div>
+        </h2>
+    </div>
+    <div class="panel-body">
+        <?php
+        echo '<div class="row">';
+        foreach ($regionPanels as $region => $items) {
+            echo '<div class="col-md-6">';
+            foreach ($items as $item) {
+                echo \yii\helpers\Html::tag('div', $item['content'], $item['options']);
+            }
+            echo '</div>';
+        }
+        echo '</div>';
+        ?>
+    </div>
+</div>
 
 ```
 

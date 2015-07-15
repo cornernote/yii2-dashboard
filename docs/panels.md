@@ -52,15 +52,20 @@ Place the following code into `app/views/dashboard/panels/example/view.php`:
  * @var $panel \app\dashboard\panels\ExamplePanel
  * @var $this \yii\web\View
  */
-
-echo '<h2>';
-echo $panel->dashboardPanel->name;
-echo $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]);
-echo '</h2>';
 ?>
 
-<div class="well">
-    <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <?= $panel->dashboardPanel->name ?>
+            <div class="pull-right">
+                <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
+            </div>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
+    </div>
 </div>
 ```
 
@@ -77,15 +82,20 @@ Place the following code into `app/views/dashboard/panels/example/update.php`:
  * @var $panel \app\dashboard\panels\ExamplePanel
  * @var $this \yii\web\View
  */
-
-echo '<h2>';
-echo $panel->dashboardPanel->name;
-echo $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]);
-echo '</h2>';
 ?>
 
-<div class="well">
-    <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <?= $panel->dashboardPanel->name ?>
+            <div class="pull-right">
+                <?= $this->render('@cornernote/dashboard/views/dashboard/panels/_buttons', ['panel' => $panel]) ?>
+            </div>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <?php \yii\helpers\VarDumper::dump($panel->dashboardPanel->options); ?>
+    </div>
 </div>
 ```
 
