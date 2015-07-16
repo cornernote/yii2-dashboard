@@ -23,7 +23,8 @@
         "codeception/verify": "*",
         "codeception/c3": "*",
         "scrutinizer/ocular": "~1.1",
-        "heroku/heroku-buildpack-php": "*"
+        "heroku/heroku-buildpack-php": "*",
+        "fxp/composer-asset-plugin": "1.*"
     },
     "autoload": {
         "psr-4": {"cornernote\\dashboard\\": "src"}
