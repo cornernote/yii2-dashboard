@@ -37,7 +37,7 @@ $config = [
                 'default' => 'cornernote\dashboard\layouts\DefaultLayout',
                 'example' => 'tests\app\dashboard\layouts\ExampleLayout',
             ],
-			'adminRules' => ['dashboardAdmin'],
+			'updateRoles' => ['dashboardAdmin'],
             'panels' => [
                 'example' => [
 					'class' => 'app\dashboard\panels\ExamplePanel',
@@ -46,7 +46,7 @@ $config = [
             ],
             'dashboards' => [
                 'dashboard first' => [
-					'allowRules => ['firstRule'],	
+					'viewRoles => ['firstRule'],	
 				],
             ],
         ],

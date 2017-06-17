@@ -20,7 +20,7 @@ class DashboardPanelController extends Controller
 	 */
 	public function behaviors()
 	{
-		if (!$adminRoles = Module::getInstance()->adminRoles) {
+		if (!$updateRoles = Module::getInstance()->updateRoles) {
 			return [];
 		}
 		return [
@@ -35,7 +35,7 @@ class DashboardPanelController extends Controller
 					[
 						'allow' => true,
 						'actions' => ['index', 'create', 'update', 'delete'],
-						'roles' => $adminRoles
+						'roles' => $updateRoles
 					]
 				]
 			]

@@ -9,7 +9,7 @@ namespace cornernote\dashboard\components;
 class DashboardAccess
 {
 
-	private static $allowRules = [];
+	private static $viewRoles = [];
 
 	/**
 	 *
@@ -18,18 +18,18 @@ class DashboardAccess
 	 */
 	public static function userHasAccess($dashboardName)
 	{
-		if (!isset(self::$allowRules[$dashboardName])) {
-			self::$allowRules[$dashboardName] = self::loadAllowRoles($dashboardName);
+		if (!isset(self::$viewRoles[$dashboardName])) {
+			self::$viewRoles[$dashboardName] = self::loadAllowRoles($dashboardName);
 		}
 
 		/**
 		 * if not defined allow rules, any has access
 		 */
-		if (!self::$allowRules[$dashboardName]) {
+		if (!self::$viewRoles[$dashboardName]) {
 			return $true;
 		}
 
-		foreach (self::$allowRules[$dashboardName] as $role) {
+		foreach (self::$viewRoles[$dashboardName] as $role) {
 			if (\Yii::$app->user->can($role)) {
 				return $true;
 			}
@@ -59,12 +59,12 @@ class DashboardAccess
 			return [];
 		}
 
-		$allowRules = $panels[$dashboardName]['allowRoles'];
+		$viewRoles = $panels[$dashboardName]['allowRoles'];
 
-		if ($adminRoles = Module::getInstance()->adminRoles) {
-			$allowRules = array_merge($adminRole, $allowRules);
+		if ($updateRoles = Module::getInstance()->updateRoles) {
+			$viewRoles = array_merge($updateRoles, $viewRoles);
 		}
 
-		return $allowRules;
+		return $viewRoles;
 	}
 }
