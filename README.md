@@ -25,6 +25,30 @@ Getting started? Try the [Installation Guide](https://cornernote.github.io/yii2-
 
 For changes since the last version see the [Changelog](https://github.com/cornernote/yii2-dashboard/blob/master/CHANGELOG.md).
 
+## Config
+
+```php
+<?php
+$config = [
+    'modules' => [
+        'dashboard' => [
+			'adminRules' => ['dashboardAdmin'],
+            'panels' => [
+                'example' => [
+					'class' => 'app\dashboard\panels\ExamplePanel',
+					'allowRules => ['exampleRule'],	
+				],
+            ],
+            'dashboards' => [
+                'dashboard first' => [
+					'allowRules => ['firstRule'],	
+				],
+            ],
+        ],
+    ],
+];
+```
+
 
 ## Screenshots
 

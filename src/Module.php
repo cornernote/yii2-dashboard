@@ -54,7 +54,7 @@ class Module extends \yii\base\Module
 	/**
 	 * @var array
 	 */
-	public $adminRole;
+	public $adminRoles;
 
 	/**
      * @return Connection the database connection.

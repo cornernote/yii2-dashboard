@@ -58,9 +58,11 @@ class DashboardPanelAccess
 		if (!isset($panels[$panelName]['allowRoles'])) {
 			return [];
 		}
+
 		$allowRules = $panels[$panelName]['allowRoles'];
-		if ($adminRole = Module::getInstance()->adminRole) {
-			$allowRules[] = $adminRole;
+
+		if ($adminRoles = Module::getInstance()->adminRoles) {
+			$allowRules = array_merge($adminRole, $allowRules);
 		}
 
 		return $allowRules;
