@@ -32,6 +32,11 @@ For changes since the last version see the [Changelog](https://github.com/corner
 $config = [
     'modules' => [
         'dashboard' => [
+            'class' => 'cornernote\dashboard\Module',
+            'layouts' => [
+                'default' => 'cornernote\dashboard\layouts\DefaultLayout',
+                'example' => 'tests\app\dashboard\layouts\ExampleLayout',
+            ],
 			'adminRules' => ['dashboardAdmin'],
             'panels' => [
                 'example' => [
