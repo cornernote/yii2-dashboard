@@ -45,7 +45,7 @@ class DashboardPanelQuery extends ActiveQuery
 	{
 		$models = parent::all($db);
 		foreach ($models as $k => $model) {
-			if (!DashboardPanelAccess::userHasAccess($model->name)) {
+			if (!components\DashboardPanelAccess::userHasAccess($model->name)) {
 				unset($models[$k]);
 			}
 		}

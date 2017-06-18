@@ -4,6 +4,8 @@ namespace cornernote\dashboard\controllers;
 
 use cornernote\dashboard\models\DashboardPanel;
 use cornernote\dashboard\models\search\DashboardPanelSearch;
+use cornernote\dashboard\Module;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;

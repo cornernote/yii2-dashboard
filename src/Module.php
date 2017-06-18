@@ -39,6 +39,9 @@ class Module extends \yii\base\Module
         'default' => 'cornernote\dashboard\layouts\DefaultLayout',
     ];
 
+
+    public $viewPath;
+
 	/**
 	 * @var array
 	 */
@@ -77,4 +80,5 @@ class Module extends \yii\base\Module
 
 		return $list;
 	}
+
 }

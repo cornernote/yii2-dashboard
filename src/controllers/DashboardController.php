@@ -4,6 +4,8 @@ namespace cornernote\dashboard\controllers;
 
 use cornernote\dashboard\models\Dashboard;
 use cornernote\dashboard\models\search\DashboardSearch;
+use cornernote\dashboard\Module;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
@@ -14,6 +16,14 @@ use cornernote\dashboard\components\DashboardAccess;
  */
 class DashboardController extends Controller
 {
+
+    public function init()
+    {
+        parent::init();
+        $this->viewPath = Module::getInstance()->viewPath;
+
+        // custom initialization code goes here
+    }
 
     /**
      * @inheritdoc
@@ -66,7 +76,6 @@ class DashboardController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-
         return $this->render('view', compact('model'));
     }
 

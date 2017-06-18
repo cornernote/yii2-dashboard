@@ -1,6 +1,8 @@
 <?php
 namespace cornernote\dashboard\components;
 
+use cornernote\dashboard\Module;
+
 /**
  * Dashboard acces controll
  *
@@ -26,12 +28,12 @@ class DashboardAccess
 		 * if not defined allow rules, any has access
 		 */
 		if (!self::$viewRoles[$dashboardName]) {
-			return $true;
+			return true;
 		}
 
 		foreach (self::$viewRoles[$dashboardName] as $role) {
 			if (\Yii::$app->user->can($role)) {
-				return $true;
+				return true;
 			}
 		}
 
