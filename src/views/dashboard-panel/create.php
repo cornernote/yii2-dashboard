@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'panel_class')->dropDownList(array_flip(Module::getInstance()->panels), ['prompt' => '']) ?>
+	<?= $form->field($model, 'panel_class')->dropDownList(Module::getInstance()->panelsList(), ['prompt' => '']) ?>
 
     <?= $form->field($model, 'region')->dropDownList($model->dashboard->layout->getRegions(), ['prompt' => '']) ?>
 

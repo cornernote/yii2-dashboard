@@ -4,9 +4,12 @@ namespace cornernote\dashboard\controllers;
 
 use cornernote\dashboard\models\Dashboard;
 use cornernote\dashboard\models\search\DashboardSearch;
+use cornernote\dashboard\Module;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
+use cornernote\dashboard\components\DashboardAccess;
 
 /**
  * DashboardController implements the CRUD actions for Dashboard model.
@@ -14,26 +17,42 @@ use yii\web\HttpException;
 class DashboardController extends Controller
 {
 
+    public function init()
+    {
+        parent::init();
+        $this->viewPath = Module::getInstance()->viewPath;
+
+        // custom initialization code goes here
+    }
+
     /**
      * @inheritdoc
      */
-    //public function behaviors()
-    //{
-    //    return [
-    //        'access' => [
-    //            'class' => AccessControl::className(),
-    //            'rules' => [
-    //                [
-    //                    'allow' => true,
-    //                    'actions' => ['index', 'view', 'create', 'update', 'delete'],
-    //                    'roles' => ['@']
-    //                ]
-    //            ]
-    //        ]
-    //    ];
-    //}
+    public function behaviors()
+	{
+		if (!$updateRoles = Module::getInstance()->updateRoles) {
+			return [];
+		}
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'allow' => true,
+						'actions' => ['view'],
+						'roles' => ['@']
+					],
+					[
+						'allow' => true,
+						'actions' => ['index', 'create', 'update', 'delete'],
+						'roles' => $updateRoles
+					]
+				]
+			]
+		];
+	}
 
-    /**
+	/**
      * Lists all Dashboard models.
      * @return mixed
      */
@@ -57,7 +76,6 @@ class DashboardController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-
         return $this->render('view', compact('model'));
     }
 
@@ -142,6 +160,7 @@ class DashboardController extends Controller
     /**
      * Finds the Dashboard model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+	 * If defined for dashboard allowRoles, check user access
      * @param string $id
      * @return Dashboard the loaded model
      * @throws HttpException if the model cannot be found
@@ -149,8 +168,13 @@ class DashboardController extends Controller
     protected function findModel($id)
     {
         if (($model = Dashboard::findOne($id)) !== null) {
-            return $model;
-        }
+
+			if (!DashboardAccess::userHasAccess($model->name)) {
+				throw new HttpException(401, 'You are not allowed to access this page.');
+			}
+
+			return $model;
+		}
         throw new HttpException(404, 'The requested page does not exist.');
     }
 }

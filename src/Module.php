@@ -39,19 +39,46 @@ class Module extends \yii\base\Module
         'default' => 'cornernote\dashboard\layouts\DefaultLayout',
     ];
 
-    /**
-     * @var array
-     */
+
+    public $viewPath;
+
+	/**
+	 * @var array
+	 */
+	public $dashboards = [];
+
+	/**
+	 * @var array
+	 */
     public $panels = [
         'text' => 'cornernote\dashboard\panels\TextPanel',
     ];
 
-    /**
+	/**
+	 * @var array
+	 */
+	public $updateRoles;
+
+	/**
      * @return Connection the database connection.
      */
     public function getDb()
     {
         return Yii::$app->{$this->db};
     }
+
+	public function panelsList()
+	{
+		$list = [];
+		foreach ($this->panels as $name => $config) {
+			if (is_array($config)) {
+				$list[$config['class']] = $name;
+				continue;
+			}
+			$list[$config] = $name;
+		}
+
+		return $list;
+	}
 
 }

@@ -4,6 +4,7 @@ namespace cornernote\dashboard\models\query;
 
 use yii\db\ActiveQuery;
 use cornernote\dashboard\models\DashboardPanel;
+use cornernote\dashboard\components;
 
 /**
  * This is the ActiveQuery class for [[\cornernote\dashboard\models\DashboardPanel]].
@@ -38,9 +39,24 @@ class DashboardPanelQuery extends ActiveQuery
     }
 
     /**
-     * @inheritdoc
-     * @return DashboardPanel|array|null
-     */
+	 * @return DashboardPanel[]|array
+	 */
+	public function allCanView($db = null)
+	{
+		$models = parent::all($db);
+		foreach ($models as $k => $model) {
+			if (!components\DashboardPanelAccess::userHasAccess($model->name)) {
+				unset($models[$k]);
+			}
+		}
+
+		return $models;
+	}
+
+	/**
+	 * @inheritdoc
+	 * @return DashboardPanel|array|null
+	 */
     public function one($db = null)
     {
         return parent::one($db);
