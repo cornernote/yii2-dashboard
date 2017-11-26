@@ -75,7 +75,9 @@ class DashboardController extends Controller
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
+        if(!$model = $this->findModel($id)){
+            return $this->render('empty');
+        }
         return $this->render('view', compact('model'));
     }
 
@@ -92,7 +94,9 @@ class DashboardController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Dashboard has been created.'));
             return $this->redirect(['update', 'id' => $model->id]);
-        } elseif (!\Yii::$app->request->isPost) {
+        }
+
+        if (!\Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->get());
         }
 
@@ -162,7 +166,7 @@ class DashboardController extends Controller
      * If the model is not found, a 404 HTTP exception will be thrown.
 	 * If defined for dashboard allowRoles, check user access
      * @param string $id
-     * @return Dashboard the loaded model
+     * @return Dashboard|false the loaded model
      * @throws HttpException if the model cannot be found
      */
     protected function findModel($id)
@@ -170,7 +174,7 @@ class DashboardController extends Controller
         if (($model = Dashboard::findOne($id)) !== null) {
 
 			if (!DashboardAccess::userHasAccess($model->name)) {
-				throw new HttpException(401, 'You are not allowed to access this page.');
+                return false;
 			}
 
 			return $model;
